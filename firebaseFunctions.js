@@ -90,7 +90,10 @@ function makeAccount(username, password){
   }
   
   ref.push(account);
-  window.location.href="catalogPage.html";
+  activeUser = new User(username, password);
+  sessionStorage.setItem("user", JSON.stringify(activeUser));
+  window.location.href="index.html";
+
   
 }
 
