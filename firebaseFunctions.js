@@ -52,7 +52,7 @@ function getAccountData(data) {
   if (!success)
     alert("unsuccessful");
   else
-      window.location.href="catalogPage.html";
+      window.location.href="index.html";
 }
 
 function checkExistingUsername(){
