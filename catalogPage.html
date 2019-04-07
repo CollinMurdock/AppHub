@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>testing</title>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script type="text/javascript" src="buttonFunctions.js"></script>
+	<script type="text/javascript" src="firebaseFunctions.js"></script>
+	<script type="text/javascript" src="session.js"></script>
+	<script type="text/javascript" src="classes/user.js"></script>
+	<script type="text/javascript" src="classes/moderator.js"></script>
+	<script type="text/javascript" src="classes/admin.js"></script>
+		<script type="text/javascript" src="classes/app.js"></script>
+
+
+	<script type="text/javascript" src="firebase.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+	<header>
+		<h1>AppHub</h1>
+	</header>
+
+	<ul id="app-list">
+		
+	</ul>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			let ref = database.ref('Apps');
+
+			ref.once('value', function(data){
+				data.forEach(function(userData){
+					let app = userData.val();
+					console.log(app.name);
+					$("#app-list").append(new AppItem(app).element);
+				});
+			});
+		});
+	</script>
+
+</body>
+</html>

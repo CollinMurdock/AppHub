@@ -1,0 +1,50 @@
+html, body, ul, h1, h2, p{
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+
+header{
+	text-align: center;
+	height: 100px;
+	color: white;
+	background-color: black;
+	padding: 5px;
+}
+
+
+.app-item{
+	list-style-type: none;
+	margin: 100px 50px;
+}
+
+.app-item ul{
+	list-style-type: none;
+}
+
+.top-block{
+	margin-bottom: 20px;
+	padding: 10px 0;
+	border-bottom: 1px solid gray;
+}
+
+.description{
+	position: relative;
+}
+.description p{
+	position: absolute;
+	bottom: 0;
+}
+
+li h2{
+	margin: none;
+}
+
+
+
+#header-logIn{
+	color: black;
+	float: right;
+}
+
+
