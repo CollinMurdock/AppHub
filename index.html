@@ -34,7 +34,6 @@
 			ref.once('value', function(data){
 				data.forEach(function(userData){
 					let app = userData.val();
-					console.log(app.name);
 					$("#app-list").append(new AppItem(app).element);
 				});
 			});
