@@ -6,4 +6,4 @@ http://ceclnx01.cec.miamioh.edu/~murdoccr/test/
 
 ### Contributors:
 
-Collin Murdock
+Collin Murdoc
