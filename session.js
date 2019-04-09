@@ -6,8 +6,7 @@ $(document).ready(function(){
 	initializeFirebase();
 	var user = sessionStorage.getItem("user");
 	if(user !== null){
-		activeUser = JSON.parse(user);
-		console.log("Logged in! Username: "+activeUser.username);	
+		userLoggedIn(user);
 	}else{
 		console.log("No one logged in");
 	}
@@ -29,6 +28,23 @@ $(document).ready(function(){
 	//createApp(app);
 	
 });
+
+function userLoggedIn(user){
+	activeUser = JSON.parse(user);
+	console.log("Logged in! Username: "+activeUser.username);
+	$("#login-button").css("display","none");
+	$("#create-button").css("display","none");
+	$("#signout-button").css("display","inline");
+	$("#proposal-button").css("display","inline");	
+	$("#welcome-user").css("display","block");
+
+}
+
+function signOut(){
+	sessionStorage.removeItem("user");
+	location.reload(true);
+	console.log("signed out");
+}
 
 
 function initializeFirebase() {

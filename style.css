@@ -1,5 +1,4 @@
 html, body, ul, h1, h2, p{
-	padding: 0 !important;
 	margin: 0 !important;
 }
 
@@ -41,10 +40,22 @@ li h2{
 }
 
 
-
-.header-button{
-	color: black;
-	float: right;
+/*Header Buttons*/
+#header-buttons{
+	margin-top: 20px;
 }
-
+#header-buttons a{
+	color: black;
+}
+#proposal-button{
+	display: none;
+}
+#signout-button{
+	display: none;
+}
+#welcome-user{
+	display: none;
+	padding-left: 50px;
+	float: left;
+}
 
