@@ -19,8 +19,20 @@
 <body>
 	<header>
 		<h1>AppHub</h1>
-		<a href="login.html"><button id="header-logIn" class="header-button">Login</button></a>
-		<a href="createAccount.html"><button id="header-createAccount" class="header-button">Create an Account</button></a>
+		<p id="welcome-user">Welcome collin!</p>
+		<div id="header-buttons">
+			<a href="login.html" class="header-button" id="login-button">
+				<button id="header-logIn">Login</button></a>
+			<a href="createAccount.html"  class="header-button" id="create-button">
+				<button id="header-createAccount">Create an Account</button></a>
+			<a href="appProposal.html" class="header-button" id="proposal-button">
+				<button>Submit an App</button>
+			</a>
+			<a href="#" class="header-button" id="signout-button" onclick="signOut()">
+				<button>Sign Out</button>
+			</a>
+
+		</div>
 	</header>
 
 	<ul id="app-list">
