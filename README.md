@@ -9,5 +9,5 @@ http://ceclnx01.cec.miamioh.edu/~murdoccr/test/
 Collin Murdock
 Kaitlin Gray
 Jacob Freedman
-Ian Albert
+Ian   Albert
 Tyler Sowards
