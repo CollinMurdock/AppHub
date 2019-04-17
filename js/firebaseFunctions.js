@@ -121,8 +121,19 @@ function getApp(key){
         app = snapshot.val();
         console.log(snapshot.key);
         displayApp(app);
+
+        let com = new Comment(activeUser, "Comment Title",
+          "This is the comment body. It has a max length of 350.");
+        addComment(key, com);
       }
     });
   });
+}
+
+
+function addComment(key, comment){
+  let ref = database.ref('Apps/'+key+'/comments');
+
+  ref.push(comment);
 }
 
