@@ -19,6 +19,7 @@ header{
 
 ul{
 	list-style-type: none;
+	padding: 0;
 }
 
 .app-item .top-block{
@@ -46,9 +47,6 @@ li h2{
 .app-container{
 	margin: 100px;
 	max-width: 800px;
-}
-.app-container ul{
-	padding: 0;
 }
 .app-container div{
 	margin-top: 15px;
