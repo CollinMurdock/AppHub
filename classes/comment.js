@@ -1,10 +1,9 @@
 class Comment {
 
-	MAX_TITLE_LENGTH = 75;
-	MAX_BODY_LENGTH = 350;
+	
 	//constructor
-	constructor(username, title, body){
-		this.username = username;
+	constructor(user, title, body){
+		this.user = user;
     	this.title = title;
 		this.body = body;
   	}
@@ -14,7 +13,7 @@ class Comment {
 			<div class="top-block">\
 				<h2 style="display:inline;">'+ this.title +'</h2>\
 				<span style="color:grey;"> from </span>\
-				<span>'+ this.username +'</span>\
+				<span>'+ this.user.username +'</span>\
 			</div>\
 			<div class="bottom-block">\
 				<p>'+ this.body +'</p>\

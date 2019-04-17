@@ -47,6 +47,16 @@
 		<div class="pure-u-1-5 link"><p><b>Link to Store</b></p></div>
 		<div class="description"><p><b>Description</b></p></div>
 		<div id="comment-section">
+			<h3>Comments</h3>
+			<div id="make-comment">
+				<h4>Make a comment</h4>
+					<p>Title</p>
+					<input type="text" id="comment-title-input">
+					<p>Body</p>
+					<textarea rows="10" cols="75" id="comment-body-input"></textarea>
+					<!-- submitComment() in script of this page -->
+					<button onclick="submitComment()">Submit</button> 
+			</div>
 			<ul id="comments">
 
 			</ul>
@@ -54,8 +64,9 @@
 	</div>	
 
 	<script type="text/javascript">
+		var appKey;
 		$(document).ready(function(){
-			var appKey = window.location.href.substring(window.location.href.indexOf('=')+1);
+			appKey = window.location.href.substring(window.location.href.indexOf('=')+1);
 			//console.log(appKey);
 			getApp(appKey);
 
@@ -70,6 +81,13 @@
 			$(".plats").append(listElements(app.platforms));
 			$(".link").append('<a href="'+app.link+'">Link Name</a>');
 			$(".description").append(app.desc);
+		}
+
+		function submitComment(){
+			let title = $.trim($("#comment-title-input").val());
+			let body = $.trim($("#comment-body-input").val());
+			let com = new Comment(activeUser, title, body);
+			addComment(appKey, com); //firebaseFunctions.js
 		}
 
 	</script>

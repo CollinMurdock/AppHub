@@ -1,5 +1,7 @@
 
 var activeUser;
+var MAX_COMMENT_TITLE_LENGTH = 75;
+var MAX_COMMENT_BODY_LENGTH = 350;
 
 //gets run before anything
 $(document).ready(function(){
