@@ -10,7 +10,7 @@ class AppItem{
 
 		this.element = $('<li class="app-item">\
 			<div class="top-block pure-g">\
-				<h1 class="pure-u-1-3 title"><a href="appPage.html/?key="'+key'+">'+app.name+'</a></h1>\
+				<h1 class="pure-u-1-3 title"><a href="appPage.html/?key="'+key+'">'+app.name+'</a></h1>\
 			</div>\
 			<div class="bottom-block pure-g">\
 				<div class="pure-u-1-5 version"><p><b>Version</b></p>'+app.version+'</div>\
@@ -25,9 +25,9 @@ class AppItem{
 	
 }
 function listElements(list){
-			var result = "";
-			list.forEach(function(value){
-				result = result + "<li>" + value + "</li>";
-			});
-			return result;
-		}
+	var result = "";
+	list.forEach(function(value){
+		result = result + "<li>" + value + "</li>";
+	});
+	return result;
+}
