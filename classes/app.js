@@ -8,7 +8,7 @@ class App{
 	price; // double : the price
 	link; // array<string> : links to app stores
 	categories; // array<categories> : categories applied
-	//comments; // array<Comment> : comments
+	comments; // array<Comment> : comments
 
 	constructor(name, desc, devs, 
 				platforms, version, 
@@ -21,5 +21,6 @@ class App{
   		this.price = price;
   		this.link = link;
   		this.categories = categories;
+  		this.comments = null;
  	}
 }
