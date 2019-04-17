@@ -11,7 +11,6 @@ class AppItem{
 		this.element = $('<li class="app-item">\
 			<div class="top-block pure-g">\
 				<h1 class="pure-u-1-3 title">'+app.name+'</h1>\
-				<div class="pure-u-2-3 description" ><p>'+app.desc+'</p></div>\
 			</div>\
 			<div class="bottom-block pure-g">\
 				<div class="pure-u-1-5 version"><p><b>Version</b></p>'+app.version+'</div>\
@@ -20,19 +19,15 @@ class AppItem{
 				<div class="pure-u-1-5 plats"><p><b>Platforms</b></p><ul>'+listElements(app.platforms)+'</ul></div>\
 				<div class="pure-u-1-5 link"><a href="'+app.link+'">Link</a></div>\
 			</div>\
-			</li>');
-
-
-
-
-		function listElements(list){
+			</li>');	
+		
+	}
+	
+}
+function listElements(list){
 			var result = "";
 			list.forEach(function(value){
 				result = result + "<li>" + value + "</li>";
 			});
 			return result;
-		}	
-		
-	}
-	
-}
+		}
