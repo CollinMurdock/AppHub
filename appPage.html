@@ -55,6 +55,8 @@
 					<p>Body</p>
 					<textarea rows="10" cols="75" id="comment-body-input"></textarea>
 					<!-- submitComment() in script of this page -->
+					<p class="comment-error" style="color:red;"></p>
+					<p class="comment-success" style="color:green;"></p>
 					<button onclick="submitComment()">Submit</button> 
 			</div>
 			<ul id="comments">
@@ -86,8 +88,16 @@
 		function submitComment(){
 			let title = $.trim($("#comment-title-input").val());
 			let body = $.trim($("#comment-body-input").val());
-			let com = new Comment(activeUser, title, body);
-			addComment(appKey, com); //firebaseFunctions.js
+			if(title.length > MAX_COMMENT_TITLE_LENGTH){
+				$(".comment-error").append("Title length too long. Must be below "+ MAX_COMMENT_TITLE_LENGTH +" characters");
+			}else if(body.length > MAX_COMMENT_BODY_LENGTH){
+				$(".comment-error").append("Body length too long. Must be below "+ MAX_COMMENT_BODY_LENGTH +" characters");
+			}else{
+				$(".comment-error").empty();
+				$(".comment-success").append("Comment successful!");
+				let com = new Comment(activeUser, title, body);
+				addComment(appKey, com); //firebaseFunctions.js
+			}
 		}
 
 	</script>
