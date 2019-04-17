@@ -20,4 +20,4 @@ https://p5js.org/learn/tdd.html
 
 ### Other TODO:
 
-1. Compile all of the js includes into one so there isn't a bunch in the head of every .html file
+1. Compile all of the js includes into one so there isn't a bunch in the head of every .html file. Also decide what pages need which js files
