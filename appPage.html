@@ -37,6 +37,35 @@
 		</div>
 	</header>
 
+	<div class="app-container">
+		<h1 id="appName"></h1>
+		<div class="pure-u-1-5 version"><p><b>Version</b></p></div>
+		<div class="pure-u-1-5 price"><p><b>Price</b></p></div>
+		<div class="pure-u-1-5"><p><b>Developers</b></p><ul class="devs"></ul></div>
+		<div class="pure-u-1-5"><p><b>Platforms</b></p><ul class="plats"></ul></div>
+		<div class="pure-u-1-5 link"><p><b>Link to Store</b></p></div>
+		<div class="description"><p><b>Description</b></p></div>
+	</div>	
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var appKey = window.location.href.substring(window.location.href.indexOf('=')+1);
+			//console.log(appKey);
+			getApp(appKey);
+		});
+
+		function displayApp(app){
+			if(app) console.log("yes app ");
+			$("#appName").append(app.name);
+			$(".version").append(app.version);
+			$(".price").append(app.price);
+			$(".devs").append(listElements(app.devs));
+			$(".plats").append(listElements(app.platforms));
+			$(".link").append('<a href="'+app.link+'">Link Name</a>');
+			$(".description").append(app.desc);
+		}
+
+	</script>
 
 </body>
 </html>

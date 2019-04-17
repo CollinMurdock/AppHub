@@ -17,26 +17,44 @@ header{
 	margin: 100px 50px;
 }
 
-.app-item ul{
+ul{
 	list-style-type: none;
 }
 
-.top-block{
+.app-item .top-block{
 	margin-bottom: 20px;
 	padding: 10px 0;
 	border-bottom: 1px solid gray;
 }
 
-.description{
+.app-item .description{
 	position: relative;
 }
-.description p{
+.app-item .description p{
 	position: absolute;
 	bottom: 0;
 }
 
 li h2{
 	margin: none;
+}
+
+
+
+
+/*appPage*/
+.app-container{
+	margin: 100px;
+	max-width: 800px;
+}
+.app-container ul{
+	padding: 0;
+}
+.app-container div{
+	margin-top: 15px;
+}
+.app-container b{
+	border-bottom: 1px solid gray;
 }
 
 

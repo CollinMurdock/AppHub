@@ -109,3 +109,19 @@ function createApp(app){
   // where we check to make sure things aren't taken
   ref.push(app);
 }
+
+
+function getApp(key){
+  let ref = database.ref('Apps');
+  var app;
+
+  ref.once('value',function(snapshot){
+    snapshot.forEach(function(snapshot){
+      if(key === snapshot.key){
+        app = snapshot.val();
+        console.log(snapshot.key);
+        displayApp(app);
+      }
+    });
+  });
+}

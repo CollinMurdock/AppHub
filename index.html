@@ -46,10 +46,10 @@
 
 			let ref = database.ref('Apps');
 
-			ref.once('value', function(data){
-				data.forEach(function(userData){
-					let app = userData.val();
-					$("#app-list").append(new AppItem(app).element); //session.js
+			ref.once('value', function(snapshot){
+				snapshot.forEach(function(snapshot){
+					let app = snapshot.val();
+					$("#app-list").append(new AppItem(app, snapshot.key).element); //session.js
 				});
 			});
 		});

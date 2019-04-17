@@ -65,7 +65,7 @@ function initializeFirebase() {
 
 class AppItem{
 	element;
-	constructor(app){
+	constructor(app, key){
 
 		var price;
 		if(app.price != 0)
@@ -75,7 +75,7 @@ class AppItem{
 
 		this.element = $('<li class="app-item">\
 			<div class="top-block pure-g">\
-				<h1 class="pure-u-1-3 title">'+app.name+'</h1>\
+				<h1 class="pure-u-1-3 title"><a href="appPage.html?key='+key+'">'+app.name+'</a></h1>\
 				<div class="pure-u-2-3 description" ><p>'+app.desc+'</p></div>\
 			</div>\
 			<div class="bottom-block pure-g">\
@@ -90,14 +90,15 @@ class AppItem{
 
 
 
-		function listElements(list){
-			var result = "";
-			list.forEach(function(value){
-				result = result + "<li>" + value + "</li>";
-			});
-			return result;
-		}	
+		
 		
 	}
 	
 }
+function listElements(list){
+	var result = "";
+	list.forEach(function(value){
+		result = result + "<li>" + value + "</li>";
+	});
+	return result;
+}	
