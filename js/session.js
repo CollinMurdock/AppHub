@@ -26,7 +26,6 @@ $(document).ready(function(){
 					"Status");
 	
 	//createApp(app);
-	
 });
 
 function userLoggedIn(user){
@@ -37,6 +36,7 @@ function userLoggedIn(user){
 	$("#signout-button").css("display","inline");
 	$("#proposal-button").css("display","inline");	
 	$("#welcome-user").css("display","block");
+
 
 }
 

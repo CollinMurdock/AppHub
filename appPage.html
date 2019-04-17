@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="classes/admin.js"></script>
 	<script type="text/javascript" src="classes/app.js"></script>
 	<script type="text/javascript" src="classes/appItem.js"></script>
+	<script type="text/javascript" src="classes/comment.js"></script>
 
 	<script type="text/javascript" src="js/firebase.js"></script>
 	<!-- CSS -->
@@ -45,6 +46,11 @@
 		<div class="pure-u-1-5"><p><b>Platforms</b></p><ul class="plats"></ul></div>
 		<div class="pure-u-1-5 link"><p><b>Link to Store</b></p></div>
 		<div class="description"><p><b>Description</b></p></div>
+		<div id="comment-section">
+			<ul id="comments">
+
+			</ul>
+		</div>
 	</div>	
 
 	<script type="text/javascript">
@@ -52,6 +58,7 @@
 			var appKey = window.location.href.substring(window.location.href.indexOf('=')+1);
 			//console.log(appKey);
 			getApp(appKey);
+
 		});
 
 		function displayApp(app){
