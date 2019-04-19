@@ -78,6 +78,7 @@
 			displayAllComments();
 		});
 
+		//called to display all of the comments
 		function displayAllComments(){
 			$("#comment-list").empty();
 			let ref = database.ref('Apps/'+appKey+'/comments');
@@ -93,6 +94,8 @@
 			});
 		}
 
+
+		//called directly to load the app
 		function displayApp(app){
 			$("#appName").append(app.name);
 			$(".version").append(app.version);
@@ -103,6 +106,7 @@
 			$(".description").append(app.desc);
 		}
 
+		//called when the submit button is clicked	
 		function submitComment(){
 			let title = $.trim($("#comment-title-input").val());
 			let body = $.trim($("#comment-body-input").val());
@@ -127,6 +131,8 @@
 			}
 		}
 
+
+		//called to get a comment element
 		function getCommentElement(comment){
 			return '<li class="comment">\
 				<div class="title-block">\
