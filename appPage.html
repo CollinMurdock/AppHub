@@ -54,7 +54,7 @@
 					<p>Body</p>
 					<textarea rows="10" cols="75" id="comment-body-input"></textarea>
 					<!-- submitComment() in script of this page -->
-					<p class="comment-message" style="color:red;"></p>
+					<p class="comment-message" ></p>
 					<button onclick="submitComment()">Submit</button> 
 			</div>
 			<ul id="comment-list">
@@ -75,6 +75,11 @@
 			}
 			
 
+			displayAllComments();
+		});
+
+		function displayAllComments(){
+			$("#comment-list").empty();
 			let ref = database.ref('Apps/'+appKey+'/comments');
 
 			ref.once('value', function(snapshot){
@@ -86,7 +91,7 @@
 					}
 				});
 			});
-		});
+		}
 
 		function displayApp(app){
 			$("#appName").append(app.name);
@@ -101,6 +106,8 @@
 		function submitComment(){
 			let title = $.trim($("#comment-title-input").val());
 			let body = $.trim($("#comment-body-input").val());
+			$(".comment-message").css("color","red");
+
 			//check to make sure the comment is valid
 			if(title.length > MAX_COMMENT_TITLE_LENGTH){
 				$(".comment-message").html("Title length too long. Must be below "+ MAX_COMMENT_TITLE_LENGTH +" characters");
@@ -111,11 +118,12 @@
 			}else if(body.length == 0){
 				$(".comment-message").html("Comment must have a body");
 			}else{
-				$(".comment-message").css("color","green;")
+				$(".comment-message").css("color","green");
 				$(".comment-message").html("Comment successful!");
 
 				let com = new Comment(activeUser, title, body);
 				addComment(appKey, com); //firebaseFunctions.js
+				displayAllComments();
 			}
 		}
 
