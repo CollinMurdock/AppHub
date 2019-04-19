@@ -71,7 +71,10 @@
 			appKey = window.location.href.substring(window.location.href.indexOf('=')+1);
 			//console.log(appKey);
 			getApp(appKey);
-
+			//if there is no user logged in, don't show the comment form
+			if(activeUser == null){
+				$("#make-comment").css("display","none");
+			}
 		});
 
 		function displayApp(app){
@@ -88,13 +91,16 @@
 		function submitComment(){
 			let title = $.trim($("#comment-title-input").val());
 			let body = $.trim($("#comment-body-input").val());
+			//check to make sure the comment is valid
 			if(title.length > MAX_COMMENT_TITLE_LENGTH){
 				$(".comment-error").append("Title length too long. Must be below "+ MAX_COMMENT_TITLE_LENGTH +" characters");
 			}else if(body.length > MAX_COMMENT_BODY_LENGTH){
 				$(".comment-error").append("Body length too long. Must be below "+ MAX_COMMENT_BODY_LENGTH +" characters");
 			}else{
 				$(".comment-error").empty();
+				$(".comment-success").empty();
 				$(".comment-success").append("Comment successful!");
+
 				let com = new Comment(activeUser, title, body);
 				addComment(appKey, com); //firebaseFunctions.js
 			}
