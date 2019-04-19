@@ -54,6 +54,19 @@ li h2{
 .app-container b{
 	border-bottom: 1px solid gray;
 }
+.comment{
+	padding: 50px 0px;
+	border: 1px solid black;
+}
+.comment-title{
+	padding-right: 20px;
+}
+.comment-user{
+	font-weight: bold;
+}
+.comment-body{
+	padding: 10px 0;
+}
 
 
 /*Header Buttons*/

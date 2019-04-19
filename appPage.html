@@ -9,7 +9,6 @@
 	<script type="text/javascript" src="classes/moderator.js"></script>
 	<script type="text/javascript" src="classes/admin.js"></script>
 	<script type="text/javascript" src="classes/app.js"></script>
-	<script type="text/javascript" src="classes/appItem.js"></script>
 	<script type="text/javascript" src="classes/comment.js"></script>
 
 	<script type="text/javascript" src="js/firebase.js"></script>
@@ -47,9 +46,9 @@
 		<div class="pure-u-1-5 link"><p><b>Link to Store</b></p></div>
 		<div class="description"><p><b>Description</b></p></div>
 		<div id="comment-section">
-			<h3>Comments</h3>
+			<h2>Comments</h2>
 			<div id="make-comment">
-				<h4>Make a comment</h4>
+				<h4>Leave a comment</h4>
 					<p>Title</p>
 					<input type="text" id="comment-title-input">
 					<p>Body</p>
@@ -59,7 +58,7 @@
 					<p class="comment-success" style="color:green;"></p>
 					<button onclick="submitComment()">Submit</button> 
 			</div>
-			<ul id="comments">
+			<ul id="comment-list">
 
 			</ul>
 		</div>
@@ -75,6 +74,16 @@
 			if(activeUser == null){
 				$("#make-comment").css("display","none");
 			}
+
+			let ref = database.ref('Apps/'+appKey+'/comments');
+
+			ref.once('value', function(snapshot){
+				snapshot.forEach(function(snapshot){
+					let comment = snapshot.val();
+					console.log(snapshot.key);
+					$("#comment-list").append(getCommentElement(comment)); //session.js
+				});
+			});
 		});
 
 		function displayApp(app){
@@ -104,6 +113,18 @@
 				let com = new Comment(activeUser, title, body);
 				addComment(appKey, com); //firebaseFunctions.js
 			}
+		}
+
+		function getCommentElement(comment){
+			return $('<li class="comment">\
+				<div class="title-block">\
+					<h2 class="comment-title">'+comment.title+'</h2>\
+				</div>\
+				<div class="body-block">\
+					<span>left by <span><span class="comment-user">'+comment.user.username+'</span>\
+					<p class="comment-body">'+comment.body+'</p>\
+				</div>\
+				</li>');
 		}
 
 	</script>
