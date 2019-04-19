@@ -31,8 +31,19 @@ $(document).ready(function(){
 });
 
 function userLoggedIn(user){
-	activeUser = JSON.parse(user);
-	console.log("Logged in! Username: "+activeUser.username);
+	var objectString = JSON.parse(user);
+
+	if(objectString.accountType === "user"){
+     	activeUser = new User(objectString.username, objectString.password);
+    }else if(objectString.accountType === "moderator"){
+     	activeUser = new Moderator(objectString.username, objectString.password);
+    	activeUser.sayHi();
+    }else{
+     	activeUser = new Admin(objectString.username, objectString.password);
+    	activeUser.sayHi();
+    }
+
+	console.log("Logged in! Username: "+activeUser.username + " Credentials: "+activeUser.accountType);
 	$("#login-button").css("display","none");
 	$("#create-button").css("display","none");
 	$("#signout-button").css("display","inline");

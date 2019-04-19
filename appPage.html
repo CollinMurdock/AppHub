@@ -74,6 +74,7 @@
 			if(activeUser == null){
 				$("#make-comment").css("display","none");
 			}
+			if(acti)
 
 			let ref = database.ref('Apps/'+appKey+'/comments');
 
@@ -124,6 +125,7 @@
 					<span>left by <span><span class="comment-user">'+comment.user.username+'</span>\
 					<p class="comment-body">'+comment.body+'</p>\
 				</div>\
+				<button class="delete-comment">Delete</button>\
 				</li>');
 		}
 

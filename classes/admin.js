@@ -1,4 +1,4 @@
-const Moderator = require('./moderator');
+//const Moderator = require('./moderator');
 
 class Admin extends Moderator {
 	constructor(username, password){
