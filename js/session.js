@@ -65,3 +65,12 @@ function initializeFirebase() {
 
 
 
+function listElements(list){
+	var result = "";
+	list.forEach(function(value){
+		result = result + "<li>" + value + "</li>";
+	});
+	return result;
+}
+
+
