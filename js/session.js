@@ -37,10 +37,8 @@ function userLoggedIn(user){
      	activeUser = new User(objectString.username, objectString.password);
     }else if(objectString.accountType === "moderator"){
      	activeUser = new Moderator(objectString.username, objectString.password);
-    	activeUser.sayHi();
     }else{
      	activeUser = new Admin(objectString.username, objectString.password);
-    	activeUser.sayHi();
     }
 
 	console.log("Logged in! Username: "+activeUser.username + " Credentials: "+activeUser.accountType);

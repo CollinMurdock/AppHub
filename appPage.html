@@ -74,21 +74,22 @@
 			if(activeUser == null){
 				$("#make-comment").css("display","none");
 			}
-			if(acti)
+			
 
 			let ref = database.ref('Apps/'+appKey+'/comments');
 
 			ref.once('value', function(snapshot){
 				snapshot.forEach(function(snapshot){
 					let comment = snapshot.val();
-					console.log(snapshot.key);
 					$("#comment-list").append(getCommentElement(comment)); //session.js
+					if(!(activeUser instanceof Moderator)) {
+						$(".delete-comment").css("display","none");
+					}
 				});
 			});
 		});
 
 		function displayApp(app){
-			if(app) console.log("yes app ");
 			$("#appName").append(app.name);
 			$(".version").append(app.version);
 			$(".price").append(app.price);
@@ -117,7 +118,7 @@
 		}
 
 		function getCommentElement(comment){
-			return $('<li class="comment">\
+			return '<li class="comment">\
 				<div class="title-block">\
 					<h2 class="comment-title">'+comment.title+'</h2>\
 				</div>\
@@ -126,7 +127,7 @@
 					<p class="comment-body">'+comment.body+'</p>\
 				</div>\
 				<button class="delete-comment">Delete</button>\
-				</li>');
+				</li>';
 		}
 
 	</script>
