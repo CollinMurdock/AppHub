@@ -76,20 +76,31 @@
 			
 
 			displayAllComments();
+
 		});
 
 		//called to display all of the comments
 		function displayAllComments(){
+			//if there are already comments in there, get rid of them
 			$("#comment-list").empty();
 			let ref = database.ref('Apps/'+appKey+'/comments');
 
+			//get the data from firebase and loop through each child
 			ref.once('value', function(snapshot){
 				snapshot.forEach(function(snapshot){
+					//comment object
 					let comment = snapshot.val();
-					$("#comment-list").append(getCommentElement(comment)); //session.js
+					//append comment element to the <ul>
+					$("#comment-list").append(getCommentElement(comment, snapshot.key)); 
+					//if the user is not an instance of Moderator, hide the delete button
 					if(!(activeUser instanceof Moderator)) {
 						$(".delete-comment").css("display","none");
 					}
+
+				});
+				//add a click listener to the delete button that calls deleteComment in the firebaseFuncitons.js file
+				$(".delete-comment").click(function(){
+					deleteComment(appKey, this.classList[1]);
 				});
 			});
 		}
@@ -133,7 +144,7 @@
 
 
 		//called to get a comment element
-		function getCommentElement(comment){
+		function getCommentElement(comment, key){
 			return '<li class="comment">\
 				<div class="title-block">\
 					<h2 class="comment-title">'+comment.title+'</h2>\
@@ -142,9 +153,11 @@
 					<span>left by <span><span class="comment-user">'+comment.user.username+'</span>\
 					<p class="comment-body">'+comment.body+'</p>\
 				</div>\
-				<button class="delete-comment">Delete</button>\
+				<button class="delete-comment '+key+'">Delete</button>\
 				</li>';
 		}
+
+		
 
 	</script>
 

@@ -4,10 +4,6 @@ class Moderator extends User{
 		super(username, password);
 		this.accountType = 'moderator';
 	}
-
-	deleteComment(key){
-		
-	}
 }
 
 module.exports = Moderator;

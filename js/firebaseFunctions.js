@@ -133,3 +133,14 @@ function addComment(key, comment){
   ref.push(comment);
 }
 
+function deleteComment(appKey, commentKey){
+  var conf = confirm("Do you wish to delete this comment?");
+  if(conf == true){
+    //reference to the list of comments of the app
+    let ref = database.ref('Apps/'+ appKey +'/comments');
+    console.log("deleting comment: "+ref.child(commentKey));
+    //deleting the comment
+    ref.child(commentKey).remove();
+    displayAllComments(); //reload the comments
+  }
+}
