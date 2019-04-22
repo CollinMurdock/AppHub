@@ -104,8 +104,17 @@ function onError(error) {
 
 
 
-function createApp(app){
+function createApp(appTitle,Description,Developers,Version,Price,Link /*,Catagories */){
   let ref = database.ref('Apps');
+  let app = {
+	  appTitle : appTitle,
+	  Description : Description,
+	  Developers : Developers,
+	  Version : Version,
+	  Price : Price,
+	  Link : Link
+  //Catagories : 
+  }
   // where we check to make sure things aren't taken
   ref.push(app);
 }

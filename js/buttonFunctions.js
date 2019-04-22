@@ -26,4 +26,5 @@ function submitApp(){
 	var version = $("#Version").val();
 	var price = $("#Price").val();
 	var links = $("#Links").val();
+	
 }
