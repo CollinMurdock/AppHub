@@ -20,12 +20,14 @@ function createAccount(){
 }
 
 function submitApp(){
+	let app = {
 	var appName = $("#AppTitle").val();
 	var desc = $("#Description").val();
 	var devs = $("#Developers").val();
 	var version = $("#Version").val();
 	var price = $("#Price").val();
 	var links = $("#Links").val();
+	}
 	
-	createApp(appName,desc,devs,version,price,links);
+	createApp(appName);
 }
