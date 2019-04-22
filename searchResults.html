@@ -42,7 +42,9 @@
 			<button id="search-button" onclick="search()">Search</button>
 		</div>
 	</div>
+
 	<div class="content">
+		<h1>Search Results</h1>
 		<ul id="app-list">
 			
 		</ul>
@@ -50,17 +52,31 @@
 
 
 	<script type="text/javascript">
+		var searchString;
+
 		$(document).ready(function(){
+			searchString = window.location.href.substring(window.location.href.indexOf('=')+1);
+			console.log(searchString);
 
 			let ref = database.ref('Apps');
+
+			var empty = true;
 
 			ref.once('value', function(snapshot){
 				snapshot.forEach(function(snapshot){
 					let app = snapshot.val();
-					$("#app-list").append(getAppElement(app, snapshot.key)); //session.js
+					if(app.name.toUpperCase().includes(searchString.toUpperCase())){
+						$("#app-list").append(getAppElement(app, snapshot.key)); //session.js
+						empty = false;
+					}
 				});
 			});
+
+			if(empty){
+				$("#app-list").append("<h3>No apps found :(</h3>");
+			}
 		});
+
 	</script>
 
 </body>

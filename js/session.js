@@ -82,4 +82,39 @@ function listElements(list){
 	return result;
 }
 
+function getAppElement(app, key){
+	var price;
+	if(app.price != 0)
+		price = "$" + app.price;
+	else
+		price = "Free!"
+
+	var element = $('<li class="app-item">\
+		<div class="top-block pure-g">\
+			<h1 class="pure-u-1-3 title"><a href="appPage.html?key='+key+'">'+app.name+'</a></h1>\
+		</div>\
+		<div class="bottom-block pure-g">\
+			<div class="pure-u-1-5 version"><p><b>Version</b></p>'+app.version+'</div>\
+			<div class="pure-u-1-5 price"><p><b>Price:</b></p>'+price+'</div>\
+			<div class="pure-u-1-5 devs"><p><b>Developers</b></p><ul>'+listElements(app.devs)+'</ul></div>\
+			<div class="pure-u-1-5 plats"><p><b>Platforms</b></p><ul>'+listElements(app.platforms)+'</ul></div>\
+			<div class="pure-u-1-5 link"><a href="'+app.link+'">Link</a></div>\
+		</div>\
+		</li>');	
+	return element;
+}
+
+//make the search bar stick to the top when the page is scrolled so far
+window.onscroll = function(){
+	if(window.pageYOffset > $("#search-bar").height()){
+		$("#search-bar").addClass("sticky-search-bar");
+	}else{
+		$("#search-bar").removeClass("sticky-search-bar");
+	}
+}
+
+function search(){
+	var searchString = $("#search-box").val();
+	window.location.href = "searchResults.html?search="+searchString;
+}
 
