@@ -104,13 +104,10 @@ function onError(error) {
 
 
 
-function createApp(Name){
+function createApp(app){
   let ref = database.ref('Apps');
-  let app = {
-	  name: Name
-  }
   // where we check to make sure things aren't taken
-  //ref.push(app);
+  ref.push(app);
 }
 
 

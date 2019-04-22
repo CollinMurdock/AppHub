@@ -61,10 +61,24 @@
 		</select><br>
 <button id="submit" onclick="submitApp()">Submit</button>
 
-
-
 	</form>
+<script>
+function submitApp(){
+	
+	var appName = $("#AppTitle").val();
+	var desc = $("#Description").val();
+	var devs = $("#Developers").val();
+	var version = $("#Version").val();
+	var price = $("#Price").val();
+	var links = $("#Links").val();
+	
+	let application = new App(appName,desc,devs,"platform",version,price,link,"add");
+	
+	createApp(application); //firebasefunction.js
 
+
+}
+</script>
 
 </body>
 </html>
