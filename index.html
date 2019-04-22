@@ -36,9 +36,16 @@
 		</div>
 	</header>
 
-	<ul id="app-list">
-		
-	</ul>
+	<div id="search-bar">
+		<input type="text" id="search-box" value="Search here">
+	</div>
+	<div class="content">
+		<ul id="app-list">
+			
+		</ul>
+	</div>
+
+	<div class="space"></div>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -73,6 +80,15 @@
 				</div>\
 				</li>');	
 			return element;
+		}
+
+		//make the search bar stick to the top when the page is scrolled so far
+		window.onscroll = function(){
+			if(window.pageYOffset > $("#search-bar").offset().top){
+				$("#search-bar").addClass("sticky-search-bar");
+			}else{
+				$("#search-bar").removeClass("sticky-search-bar");
+			}
 		}
 	</script>
 

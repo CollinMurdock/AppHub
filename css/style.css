@@ -88,3 +88,26 @@ li h2{
 	float: left;
 }
 
+/*Search bar*/
+#search-bar{
+	background: black;
+	padding: 15px;
+}
+#search-box{
+	width: 50%;
+	display: block;
+	margin: 0 auto;
+}
+
+.sticky-search-bar{
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+.content{
+	padding:15px;
+	
+}
+.space{
+	height: 600px;
+}
