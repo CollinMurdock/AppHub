@@ -45,7 +45,6 @@
 		</ul>
 	</div>
 
-	<div class="space"></div>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -84,7 +83,7 @@
 
 		//make the search bar stick to the top when the page is scrolled so far
 		window.onscroll = function(){
-			if(window.pageYOffset > $("#search-bar").offset().top){
+			if(window.pageYOffset > $("#search-bar").height()){
 				$("#search-bar").addClass("sticky-search-bar");
 			}else{
 				$("#search-bar").removeClass("sticky-search-bar");
