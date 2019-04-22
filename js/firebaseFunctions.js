@@ -110,7 +110,7 @@ function createApp(Name){
 	  name: Name
   }
   // where we check to make sure things aren't taken
-  ref.push(app);
+  //ref.push(app);
 }
 
 
