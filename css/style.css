@@ -93,12 +93,13 @@ li h2{
 	background: black;
 	padding: 20px;
 }
-#search-box{
+#search-inputs{
 	width: 50%;
-	display: block;
 	margin: 0 auto;
 }
-
+#search-box{
+	width: 80%;
+}
 .sticky-search-bar{
 	position: fixed;
 	top: 0;
