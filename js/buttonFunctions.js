@@ -27,4 +27,5 @@ function submitApp(){
 	var price = $("#Price").val();
 	var links = $("#Links").val();
 	
+	createApp(appName,desc,devs,version,price,links);
 }
