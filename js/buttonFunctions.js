@@ -18,3 +18,12 @@ function createAccount(){
 
 	checkExistingUsername(new User(username, password)); //firebaseFunctions.js
 }
+
+function submitApp(){
+	var appName = $("#AppTitle").val();
+	var desc = $("#Description").val();
+	var devs = $("#Developers").val();
+	var version = $("#Version").val();
+	var price = $("#Price").val();
+	var links = $("#Links").val();
+}
