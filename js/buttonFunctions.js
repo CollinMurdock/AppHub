@@ -18,7 +18,7 @@ function createAccount(){
 
 	checkExistingUsername(new User(username, password)); //firebaseFunctions.js
 }
-
+/*
 function submitApp(){
 	let app = {
 	var appName = $("#AppTitle").val();
@@ -31,3 +31,4 @@ function submitApp(){
 	
 	createApp(appName);
 }
+*/
