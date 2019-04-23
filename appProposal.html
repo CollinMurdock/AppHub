@@ -80,10 +80,11 @@ function submitApp(){
 	var price = $("#Price").val();
 	var links = $("#Links").val();
 	
-	let application = new App(appName,desc,devs,platform,version,price,links,"catagories");
+	
 	let application2 = new App("google","test","error","web","0","0","none","catagories");
-	createApp(application); //firebasefunction.js
 	createApp(application2); 
+	let application = new App(appName,desc,devs,platform,version,price,links,"catagories");
+	createApp(application); //firebasefunction.js
 
 }
 </script>
