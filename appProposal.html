@@ -72,18 +72,15 @@
 <script type="text/javascript">
 function submitApp(){
 	
-	var appName = $("#AppTitle").val();
-	var desc = $("#Description").val();
-	var devs = $("#Developers").val();
-	var platform = $("Platforms").val();
-	var version = $("#Version").val();
-	var price = $("#Price").val();
-	var links = $("#Links").val();
+	var appName =  document.getElementById("appTitle").value;
+	var desc = document.getElementById("Description").value;
+	var devs = document.getElementById("Developers").value;
+	var platform = document.getElementById("Platforms").value;
+	var version = document.getElementById("Version").value;
+	var price = document.getElementById("Price").value;
+	var links = document.getElementById("Link").value;
 	
-	
-	let application2 = new App("google","test","error","web","0","0","none","catagories");
-	createApp(application2); 
-	let application = new App(appName,desc,devs,platform,version,price,links,"catagories");
+	let application = new App(appName,desc,devs,platform,version,price,links,"catagories"); //placeholder for catagories
 	createApp(application); //firebasefunction.js
 
 }
