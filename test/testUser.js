@@ -32,4 +32,33 @@ describe('User Tests', function(){
 		expect(user.accountType).to.be.a('string');
 		done();
 	});
+	
+	it('should have setter functions that correctly manipulate data', function(done){
+		user.setUsername('newUsername');
+		user.setPassword('newPassword');
+		expect(user.username).to.equal('newUsername');
+		expect(user.password).to.equal('newPassword');
+		done();
+	});
+	
+	it('should have getter functions that return accurate values', function(done){
+		expect(user.getUsername()).to.equal('testUsername');
+		expect(user.getPassword()).to.equal('testPassword');
+		done();
+	});
+	
+	it('should not allow usernames or passwords to be blank', function(done){
+		user.setUsername('');
+		expect(user.username).to.equal('testUsername');
+		user.setPassword('');
+		expect(user.password).to.equal('testPassword');
+		done();
+	});
+	
+	it('should not allow passwords to be less than 5 characters', function(done){
+		user.setPassword('test');
+		expect(user.password).to.equal('testPassword');
+		done();
+	});
+		
 })
