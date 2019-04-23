@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="classes/moderator.js"></script>
 	<script type="text/javascript" src="classes/admin.js"></script>
 	<script type="text/javascript" src="classes/app.js"></script>
-	<script type="text/javascript" src="classes/appItem.js"></script>
+	<!--<script type="text/javascript" src="classes/appItem.js"></script> -->
 
 	<script type="text/javascript" src="js/firebase.js"></script>
 	<!-- CSS -->
@@ -53,8 +53,10 @@
 		<textarea rows="10" cols="75" id = "Description"></textarea><br>
 		<b>Developers</b><br>
 		<input type="text" id = "Developers"><button>Add Another</button><br>
+		<b>Platform</b>
+		<input type="text" id = "Platforms"><button>Add Another</button><br>
 		<b>Version</b><br>
-		<input type="text" id = "Version><br>
+		<input type="text" id = "Version"><br>
 		<b>Price</b><br>
 		<input type="text" id = "Price"><br>
 		<b>Links to App Stores</b><br>
@@ -73,11 +75,12 @@ function submitApp(){
 	var appName = $("#AppTitle").val();
 	var desc = $("#Description").val();
 	var devs = $("#Developers").val();
+	var platform = $("Platforms").val();
 	var version = $("#Version").val();
 	var price = $("#Price").val();
 	var links = $("#Links").val();
 	
-	let application = new App("appName","desc","devs","platform","version","price","www.google.com","add");
+	let application = new App(appName,desc,devs,platform,version,price,links,"catagories");
 	
 	createApp(application); //firebasefunction.js
 
