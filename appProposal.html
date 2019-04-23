@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="classes/moderator.js"></script>
 	<script type="text/javascript" src="classes/admin.js"></script>
 	<script type="text/javascript" src="classes/app.js"></script>
-	<script type="text/javascript" src="classes/appItem.js"></script>
+	<!--<script type="text/javascript" src="classes/appItem.js"></script> -->
 
 	<script type="text/javascript" src="js/firebase.js"></script>
 	<!-- CSS -->
@@ -23,6 +23,8 @@
 		<h1>AppHub</h1>
 		<p id="welcome-user">Welcome collin!</p>
 		<div id="header-buttons">
+			<a href = "index.html" class = "header-button" id = "home-button">
+				<button id = "header-home">Home</button></a>
 			<a href="login.html" class="header-button" id="login-button">
 				<button id="header-logIn">Login</button></a>
 			<a href="createAccount.html"  class="header-button" id="create-button">
@@ -39,30 +41,47 @@
 
 
 	<h3>Submit an app to be included in this catalog!</h3>
+	<h2>testing</h2>
 	<form>
 
 		<b>App Title</b><br>
-		<input type="text"><br>
+		<input type="text" id = "appTitle"><br>
 		<b>Description</b><br>
-		<textarea rows="10" cols="75"></textarea><br>
+		<textarea rows="10" cols="75" id = "Description"></textarea><br>
 		<b>Developers</b><br>
-		<input type="text"><button>Add Another</button><br>
+		<input type="text" id = "Developers"><button>Add Another</button><br>
+		<b>Platform</b><br>
+		<input type="text" id = "Platforms"><button>Add Another</button><br>
 		<b>Version</b><br>
-		<input type="text"><br>
+		<input type="text" id = "Version"><br>
 		<b>Price</b><br>
-		<input type="text"><br>
+		<input type="text" id = "Price"><br>
 		<b>Links to App Stores</b><br>
-		<input type="text"><button>Add Another</button><br>
+		<input type="text" id = "Link"><button>Add Another</button><br>
 		<b>Categories</b><br>
 		<select>
 			<option>None</option>
 			<!-- Options go in here -->
 		</select><br>
-		<button>Submit</button>
-
+<button id="submit" onclick="submitApp()">Submit</button>
 
 	</form>
+<script type="text/javascript">
+function submitApp(){
+	
+	var appName =  document.getElementById("appTitle").value;
+	var desc = document.getElementById("Description").value;
+	var devs = [document.getElementById("Developers").value];
+	var platform = [document.getElementById("Platforms").value];
+	var version = document.getElementById("Version").value;
+	var price = document.getElementById("Price").value;
+	var links = document.getElementById("Link").value;
+	
+	let application = new App(appName,desc,devs,platform,version,price,links,"catagories"); //placeholder for catagories
+	createApp(application); //firebasefunction.js
 
+}
+</script>
 
 </body>
 </html>

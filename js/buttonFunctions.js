@@ -18,3 +18,5 @@ function createAccount(){
 
 	checkExistingUsername(new User(username, password)); //firebaseFunctions.js
 }
+
+
