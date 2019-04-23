@@ -2,7 +2,7 @@
 
 CSE 201 Final Project
 
-http://ceclnx01.cec.miamioh.edu/~murdoccr/test/
+http://ceclnx01.cec.miamioh.edu/~murdoccr/to_server/
 
 ### Contributors:
 
