@@ -77,7 +77,7 @@ function submitApp(){
 	var price = $("#Price").val();
 	var links = $("#Links").val();
 	
-	let application = new App(appName,desc,devs,"platform",version,price,link,"add");
+	let application = new App("appName","desc","devs","platform","version","price","www.google.com","add");
 	
 	createApp(application); //firebasefunction.js
 
