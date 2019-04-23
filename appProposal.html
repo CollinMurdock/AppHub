@@ -53,7 +53,7 @@
 		<textarea rows="10" cols="75" id = "Description"></textarea><br>
 		<b>Developers</b><br>
 		<input type="text" id = "Developers"><button>Add Another</button><br>
-		<b>Platform</b>
+		<b>Platform</b><br>
 		<input type="text" id = "Platforms"><button>Add Another</button><br>
 		<b>Version</b><br>
 		<input type="text" id = "Version"><br>
@@ -81,9 +81,9 @@ function submitApp(){
 	var links = $("#Links").val();
 	
 	let application = new App(appName,desc,devs,platform,version,price,links,"catagories");
-	
+	let application2 = new App("google","test","error","web","0","0","none","catagories");
 	createApp(application); //firebasefunction.js
-
+	createApp(application2); 
 
 }
 </script>
