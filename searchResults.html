@@ -60,7 +60,7 @@
 
 			let ref = database.ref('Apps');
 
-			var empty = true;
+			let empty = true;
 
 			ref.once('value', function(snapshot){
 				snapshot.forEach(function(snapshot){
@@ -70,11 +70,10 @@
 						empty = false;
 					}
 				});
+				if(empty){
+					$("#app-list").append("<h3>No apps found :(</h3>");
+				}
 			});
-
-			if(empty){
-				$("#app-list").append("<h3>No apps found :(</h3>");
-			}
 		});
 
 	</script>

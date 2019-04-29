@@ -14,6 +14,10 @@ $(document).ready(function(){
 	}
 	
 
+	var dev = $("#whatever").val();
+
+	var devs = [dev, "me"];
+
 	let platforms = ["iOS", "Android"];
 
 	//a basic app
@@ -106,7 +110,7 @@ function getAppElement(app, key){
 
 //make the search bar stick to the top when the page is scrolled so far
 window.onscroll = function(){
-	if(window.pageYOffset > $("#search-bar").height()){
+	if(window.pageYOffset > $("header").height()){
 		$("#search-bar").addClass("sticky-search-bar");
 	}else{
 		$("#search-bar").removeClass("sticky-search-bar");
