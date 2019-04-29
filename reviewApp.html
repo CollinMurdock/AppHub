@@ -39,10 +39,23 @@
 		</div>
 	</header>
 
+	<div id="view-proposals">
+		<ul id="proposal-list"></ul>
+	</div>
 
-	</form>
+
 <script type="text/javascript">
+$(document).ready(function(){
 
+	let ref = database.ref('ProposedApps');
+
+	ref.once('value', function(snapshot){
+		snapshot.forEach(function(snapshot){
+			let app = snapshot.val();
+			$("#proposal-list").append(getAppProposalElement(app, snapshot.key)); //session.js
+		});
+	});
+});
 </script>
 
 </body>

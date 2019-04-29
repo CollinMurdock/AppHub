@@ -104,9 +104,49 @@ function getAppElement(app, key){
 			<div class="pure-u-1-5 plats"><p><b>Platforms</b></p><ul>'+listElements(app.platforms)+'</ul></div>\
 			<div class="pure-u-1-5 link"><a href="'+app.link+'">Link</a></div>\
 		</div>\
-		</li>');	
+		</li>');
+
 	return element;
 }
+
+
+function getAppProposalElement(app, key){
+	var price;
+	if(app.price != 0)
+		price = "$" + app.price;
+	else
+		price = "Free!";
+
+	var shortDesc;
+	var readMore = false;
+	if(app.desc.length > 75){
+		shortDesc = app.desc.substring(0,75);
+		readMore = true;
+	}else{
+		shortDesc = app.desc;
+	}
+
+	var element = '<li class="app-proposal-item app-item">';
+	element += '<div class="top-block pure-g">';
+	element += '<h1 class="pure-u-1-3 title">'+app.name+'</h1>';
+	element += '<div class="accept-deny-buttons"><button class="accept-app">Accept</button><button class="deny-app">Deny</button></div>';
+	element += '</div>';
+	element += '<div class="bottom-block pure-g">';
+	element += '<div class="pure-u-1-5 version"><p><b>Version</b></p>'+app.version+'</div>';
+	element += '<div class="pure-u-1-5 price"><p><b>Price:</b></p>'+price+'</div>';
+	element += '<div class="pure-u-1-5 devs"><p><b>Developers</b></p><ul>'+listElements(app.devs)+'</ul></div>';
+	element += '<div class="pure-u-1-5 plats"><p><b>Platforms</b></p><ul>'+listElements(app.platforms)+'</ul></div>';
+	element += '<div class="pure-u-1-5 link"><a href="'+app.link+'">Link</a></div>';
+	element += '</div>';
+	element += '<div class="proposal-desc"><p>'+ shortDesc;
+
+	if(readMore) element += '<a style="color:gray;">...Read more</a>';
+
+	element += '</p></div>';
+	element += '</li>';	
+	return element;
+}
+
 
 //make the search bar stick to the top when the page is scrolled so far
 window.onscroll = function(){
