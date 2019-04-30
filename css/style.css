@@ -109,3 +109,12 @@ li h2{
 	padding:15px;
 
 }
+
+/*appPropoasl*/
+.app-proposal-item .proposal-desc{
+	padding: 20px 0;
+}
+.app-proposal-item span:hover{
+	cursor: pointer;
+}
+

@@ -39,48 +39,64 @@
 		</div>
 	</header>
 
+	<div id="view-proposals">
+		<ul id="proposal-list"></ul>
+	</div>
 
-	<h3>Submit an app to be included in this catalog!</h3>
-	<h2>testing</h2>
-	<form>
 
-		<b>App Title</b><br>
-		<input type="text" id = "appTitle"><br>
-		<b>Description</b><br>
-		<textarea rows="10" cols="75" id = "Description"></textarea><br>
-		<b>Developers</b><br>
-		<input type="text" id = "Developers"><button>Add Another</button><br>
-		<b>Platform</b><br>
-		<input type="text" id = "Platforms"><button>Add Another</button><br>
-		<b>Version</b><br>
-		<input type="text" id = "Version"><br>
-		<b>Price</b><br>
-		<input type="text" id = "Price"><br>
-		<b>Links to App Stores</b><br>
-		<input type="text" id = "Link"><button>Add Another</button><br>
-		<b>Categories</b><br>
-		<select>
-			<option>None</option>
-			<!-- Options go in here -->
-		</select><br>
-<button id="submit" onclick="submitApp()">Submit</button>
-
-	</form>
 <script type="text/javascript">
-function submitApp(){
-	
-	var appName =  document.getElementById("appTitle").value;
-	var desc = document.getElementById("Description").value;
-	var devs = [document.getElementById("Developers").value];
-	var platform = [document.getElementById("Platforms").value];
-	var version = document.getElementById("Version").value;
-	var price = document.getElementById("Price").value;
-	var links = document.getElementById("Link").value;
-	
-	let application = new App(appName,desc,devs,platform,version,price,links,"catagories"); //placeholder for catagories
-	createAppProposal(application); //firebasefunction.js
+$(document).ready(function(){
+	getProposedApps();
+});
 
+function getProposedApps(){
+	$("#proposal-list").empty();
+	let ref = database.ref('ProposedApps');
+
+	ref.once('value', function(snapshot){
+		snapshot.forEach(function(snapshot){
+			let app = snapshot.val();
+			$("#proposal-list").append(getAppProposalElement(app, snapshot.key)); //session.js
+			//read more click event listener
+			$(".read-more").click(function(){
+				$(this).parent().css("display","none");
+				$(this).parent().parent().children(".full-desc").css("display", "block");
+			});
+
+			//read less click event listener
+			$(".read-less").click(function(){
+				$(this).parent().css("display","none");
+				$(this).parent().parent().children(".short-desc").css("display", "block");
+			});
+
+			//accept button click event listener
+			$(".accept-app").click(function(){
+				console.log("we've been clicked!");
+				//get the third class of its great grandparent
+				var key = $(this).parent().parent().parent().attr("class").split(" ")[2];
+				//confirm they wish to accept the app
+				var conf = confirm("Do you wish to accept this app?");
+				if(conf == true){
+					let ref2 = database.ref('ProposedApps');
+					ref2.once('value', function(snapshot2){
+						snapshot2.forEach(function(snapshot2){
+							if (snapshot2.key == key){
+								console.log("creating accepted app");
+								var app = snapshot2.val();
+								createApp(snapshot2.val());
+								console.log("removing app from proposed");
+								ref.child(key).remove();
+								getProposedApps();
+							}
+						});
+					});
+				}
+			});
+		});
+	});
 }
+
+
 </script>
 
 </body>
