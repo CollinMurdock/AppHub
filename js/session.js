@@ -109,7 +109,7 @@ function getAppElement(app, key){
 	return element;
 }
 
-
+//returns a string of an app proposal element to be added in reviewApp.html
 function getAppProposalElement(app, key){
 	var price;
 	if(app.price != 0)
@@ -138,14 +138,20 @@ function getAppProposalElement(app, key){
 	element += '<div class="pure-u-1-5 plats"><p><b>Platforms</b></p><ul>'+listElements(app.platforms)+'</ul></div>';
 	element += '<div class="pure-u-1-5 link"><a href="'+app.link+'">Link</a></div>';
 	element += '</div>';
-	element += '<div class="proposal-desc"><p>'+ shortDesc;
+	element += '<div class="proposal-desc"><p class="short-desc">'+ shortDesc;
 
-	if(readMore) element += '<a style="color:gray;">...Read more</a>';
+	if(readMore) element += '<span class="read-more" style="color:gray;">...Read more</span>';
 
-	element += '</p></div>';
+
+	element += '</p>';
+	element += '<p class="full-desc" style="display:none;">'+ app.desc;
+	element += '<span class="read-less" style="color:gray;">...Read less</span></p></div>';
 	element += '</li>';	
 	return element;
 }
+
+
+
 
 
 //make the search bar stick to the top when the page is scrolled so far

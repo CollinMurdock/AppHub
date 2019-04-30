@@ -53,9 +53,21 @@ $(document).ready(function(){
 		snapshot.forEach(function(snapshot){
 			let app = snapshot.val();
 			$("#proposal-list").append(getAppProposalElement(app, snapshot.key)); //session.js
+			//read more click event listener
+			$(".read-more").click(function(){
+				$(this).parent().css("display","none");
+				$(this).parent().parent().children(".full-desc").css("display", "block");
+			});
+
+			//read less click event listener
+			$(".read-less").click(function(){
+				$(this).parent().css("display","none");
+				$(this).parent().parent().children(".short-desc").css("display", "block");
+			});
 		});
 	});
 });
+
 </script>
 
 </body>
