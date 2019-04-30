@@ -46,7 +46,11 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	getProposedApps();
+});
 
+function getProposedApps(){
+	$("#proposal-list").empty();
 	let ref = database.ref('ProposedApps');
 
 	ref.once('value', function(snapshot){
@@ -64,9 +68,34 @@ $(document).ready(function(){
 				$(this).parent().css("display","none");
 				$(this).parent().parent().children(".short-desc").css("display", "block");
 			});
+
+			//accept button click event listener
+			$(".accept-app").click(function(){
+				console.log("we've been clicked!");
+				//get the third class of its great grandparent
+				var key = $(this).parent().parent().parent().attr("class").split(" ")[2];
+				//confirm they wish to accept the app
+				var conf = confirm("Do you wish to accept this app?");
+				if(conf == true){
+					let ref2 = database.ref('ProposedApps');
+					ref2.once('value', function(snapshot2){
+						snapshot2.forEach(function(snapshot2){
+							if (snapshot2.key == key){
+								console.log("creating accepted app");
+								var app = snapshot2.val();
+								createApp(snapshot2.val());
+								console.log("removing app from proposed");
+								ref.child(key).remove();
+								getProposedApps();
+							}
+						});
+					});
+				}
+			});
 		});
 	});
-});
+}
+
 
 </script>
 
