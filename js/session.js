@@ -126,7 +126,7 @@ function getAppProposalElement(app, key){
 		shortDesc = app.desc;
 	}
 
-	var element = '<li class="app-proposal-item app-item '+ key +'">';
+	var element = '<li class="app-proposal-item app-item">';
 	element += '<div class="top-block pure-g">';
 	element += '<h1 class="pure-u-1-3 title">'+app.name+'</h1>';
 	element += '<div class="accept-deny-buttons"><button class="accept-app">Accept</button><button class="deny-app">Deny</button></div>';

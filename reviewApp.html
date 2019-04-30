@@ -46,11 +46,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	getProposedApps();
-});
 
-function getProposedApps(){
-	$("#proposal-list").empty();
 	let ref = database.ref('ProposedApps');
 
 	ref.once('value', function(snapshot){
@@ -63,6 +59,7 @@ function getProposedApps(){
 	});
 }
 
+<<<<<<< HEAD
 function addListeners(){
 	//read more click event listener
 	$(".read-more").click(function(){
@@ -98,9 +95,16 @@ function addListeners(){
 				});
 			});
 		}
+=======
+			//read less click event listener
+			$(".read-less").click(function(){
+				$(this).parent().css("display","none");
+				$(this).parent().parent().children(".short-desc").css("display", "block");
+			});
+		});
+>>>>>>> parent of 865d867... added app accepting functionality
 	});
-}
-
+});
 
 </script>
 
