@@ -47,6 +47,11 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
+	getProposedApps();
+});
+
+function getProposedApps(){
+	$("#proposal-list").empty();
 	let ref = database.ref('ProposedApps');
 
 	ref.once('value', function(snapshot){
@@ -57,7 +62,7 @@ $(document).ready(function(){
 		});
 		addListeners();
 	});
-});
+}
 
 
 function addListeners(){
@@ -82,14 +87,13 @@ function addListeners(){
 		if(conf == true){
 			let proposedRef = database.ref('ProposedApps');
 			proposedRef.once('value', function(snapshot2){
-				snapshot2.forEach(function(snapshot2){
-					console.log("snapshot2.key: "+snapshot2.key+" key: "+key);	
+				snapshot2.forEach(function(snapshot2){	
 					if (snapshot2.key == key){
 						console.log("creating accepted app");
 						var app = snapshot2.val();
 						createApp(snapshot2.val());
 						console.log("removing app from proposed");
-						ref.child(key).remove();
+						proposedRef.child(key).remove();
 						getProposedApps();
 					}
 				});

@@ -105,7 +105,14 @@ function onError(error) {
 
 
 function createApp(app){
-	//adds to proposed node
+  let ref = database.ref('Apps');
+  
+  // where we check to make sure things aren't taken (still needs to be done)
+  ref.push(app);
+}
+
+function propseApp(app){
+  //adds to proposed node
   let ref = database.ref('ProposedApps');
   
   // where we check to make sure things aren't taken (still needs to be done)
