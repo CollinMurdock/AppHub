@@ -25,3 +25,4 @@ https://p5js.org/learn/tdd.html
 
 1. Compile all of the js includes into one so there isn't a bunch in the head of every .html file. Also decide what pages need which js files
 2. **Done** Get rid of AppItem class. It can be done just with a function. 
+3. Make buttons nicer using Pure css
