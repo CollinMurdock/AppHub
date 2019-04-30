@@ -78,7 +78,6 @@ function addListeners(){
 
 	//accept button click event listener
 	$(".accept-app").click(function(){
-		console.log("we've been clicked!");
 		//get the third class of its great grandparent
 		var key = $(this).parent().parent().parent().attr("class").split(" ")[2];
 		//confirm they wish to accept the app
@@ -91,6 +90,26 @@ function addListeners(){
 						console.log("creating accepted app");
 						var app = snapshot2.val();
 						createApp(snapshot2.val());
+						console.log("removing app from proposed");
+						proposedRef.child(key).remove();
+						getProposedApps();
+					}
+				});
+			});
+		}
+	});
+
+	//deny button click event listener
+	$(".deny-app").click(function(){
+		//get the third class of its great grandparent
+		var key = $(this).parent().parent().parent().attr("class").split(" ")[2];
+		//confirm they wish to accept the app
+		var conf = confirm("Do you wish to deny this app?");
+		if(conf == true){
+			let proposedRef = database.ref('ProposedApps');
+			proposedRef.once('value', function(snapshot2){
+				snapshot2.forEach(function(snapshot2){
+					if (snapshot2.key == key){
 						console.log("removing app from proposed");
 						proposedRef.child(key).remove();
 						getProposedApps();
