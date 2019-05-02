@@ -42,22 +42,22 @@
 
 	<h3>Submit an app to be included in this catalog!</h3>
 	<h2>testing</h2>
-	<form>
+	<form id = "formID">
 
 		<b>App Title</b><br>
 		<input type="text" id = "appTitle"><br>
 		<b>Description</b><br>
 		<textarea rows="10" cols="75" id = "Description"></textarea><br>
 		<b>Developers</b><br>
-		<input type="text" id = "Developers"><button>Add Another</button><br>
+		<input type="text" id = "Developers"><button id = "fieldAddition" onclick = "addTextField()">Add Another</button><br>
 		<b>Platform</b><br>
-		<input type="text" id = "Platforms"><button>Add Another</button><br>
+		<input type="text" id = "Platforms"><button id = "fieldAddition" onclick = "addTextField()">Add Another</button><br>
 		<b>Version</b><br>
 		<input type="text" id = "Version"><br>
 		<b>Price</b><br>
 		<input type="text" id = "Price"><br>
 		<b>Links to App Stores</b><br>
-		<input type="text" id = "Link"><button>Add Another</button><br>
+		<input type="text" id = "Link"><button id = "fieldAddition" onclick = "addTextField()">Add Another</button><br>
 		<b>Categories</b><br>
 		<select>
 			<option>None</option>
@@ -82,6 +82,19 @@ function submitApp(){
 
 }
 </script>
+
+
+document.getElementById("fieldAddition").onclick = function() {
+    var form = document.getElementById("FormID");
+    var input = document.createElement("input");
+    input.type = "text";
+    var br = document.createElement("br");
+    form.appendChild(input);
+    form.appendChild(br);
+}
+
+
+
 
 </body>
 </html>
