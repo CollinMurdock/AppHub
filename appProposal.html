@@ -42,7 +42,7 @@
 
 	<h3>Submit an app to be included in this catalog!</h3>
 	<h2>testing</h2>
-	<form id = "formID">
+	<div id = "formID">
 
 		<b>App Title</b><br>
 		<input type="text" id = "appTitle"><br>
@@ -60,7 +60,7 @@
 		<b>Price</b><br>
 		<input type="text" id = "Price"><br>
 		<b>Links to App Stores</b><br>
-		<input type="text" id = "Link"><button id = "fieldAddition" onclick="addText();">Add Another</button><br>
+		<input type="text" id = "Link"><button id = "fieldAddition" onclick="addTextLink();">Add Another</button><br>
 		<b>Categories</b><br>
 		<select>
 			<option>None</option>
@@ -71,7 +71,7 @@
 		
 <button id="submit" onclick="submitApp()">Submit</button>
 
-	</form>
+	</div>
 <script type="text/javascript">
 function submitApp(){
 	
@@ -88,7 +88,13 @@ function submitApp(){
 
 }
 </script>
+<script type="text/javascript">
+function addTextLink(){
+	
+<input type="text" id = "Link">
 
+}
+</script>
 
 
 
