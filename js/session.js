@@ -43,6 +43,7 @@ function userLoggedIn(user){
      	activeUser = new Moderator(objectString.username, objectString.password);
     }else{
      	activeUser = new Admin(objectString.username, objectString.password);
+    	$("#review-app-button").css("display","inline");
     }
 
 	console.log("Logged in! Username: "+activeUser.username + " Credentials: "+activeUser.accountType);
@@ -50,7 +51,7 @@ function userLoggedIn(user){
 	$("#create-button").css("display","none");
 	$("#signout-button").css("display","inline");
 	$("#proposal-button").css("display","inline");	
-	$("#welcome-user").css("display","block");
+	$("#welcome-user").html("Welcome "+activeUser.username+"!");
 
 
 }
