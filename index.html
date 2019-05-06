@@ -32,16 +32,37 @@
 			<a href="#" class="header-button" id="signout-button" onclick="signOut()">
 				<button>Sign Out</button>
 			</a>
-			<a href="reviewApp.html" class="header-button" id="app-review-button">
+			<a href="reviewApp.html" class="header-button" id="app-review-button" style="display:none;">
 				<button>Review App Proposals</button>
 			</a>
 		</div>
 	</header>
 
 	<div id="search-bar">
-		<div id="search-inputs">
-			<input type="text" id="search-box" placeholder="Search here">
-			<button id="search-button" onclick="search()">Search</button>
+		<div class="container">
+			<div id="search-inputs">
+				<input type="text" id="search-box" placeholder="Search here">
+				<button id="search-button" onclick="search()">Search</button>
+			</div>
+			<div class="filter-inputs">
+				<label>Category: </label>
+				<select id="category-select">
+					<option>Media Sharing</option>
+					<option>Blog</option>
+					<option>Shopping</option>
+					<option>News</option>
+					<option>Podcasts</option>
+					<option>Livestream</option>
+				</select>
+				<label>Order: </label>
+				<select id="order-select">
+					<option>Alphabetical - High to Low</option>
+					<option>Alphabetical - Low to High</option>
+					<option>Price - High to Low</option>
+					<option>Price - Low to High</option>
+				</select>
+				<button id="filter-button">Filter</button>
+			</div>
 		</div>
 	</div>
 	<div class="content">

@@ -43,7 +43,7 @@ function userLoggedIn(user){
      	activeUser = new Moderator(objectString.username, objectString.password);
     }else{
      	activeUser = new Admin(objectString.username, objectString.password);
-    	$("#review-app-button").css("display","inline");
+    	$("#app-review-button").css("display","inline");
     }
 
 	console.log("Logged in! Username: "+activeUser.username + " Credentials: "+activeUser.accountType);
