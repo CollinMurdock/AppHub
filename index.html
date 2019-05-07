@@ -81,7 +81,7 @@
 
 			let ref = database.ref('Apps');
 
-			var sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5);
+			var sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5,window.location.href.indexOf('&cat'));
 			var categoryString = window.location.href.substring(window.location.href.indexOf('cat=')+4).replace("+", " ");
 
 			ref.once('value', function(snapshot){

@@ -76,11 +76,13 @@
 
 
 	<script type="text/javascript">
+		var searchString;
 		if(window.location.href.indexOf('&') == -1){
-			var searchString = window.location.href.substring(window.location.href.indexOf('search=')+7);
+			 searchString = window.location.href.substring(window.location.href.indexOf('search=')+7);
 		}else{
-			var searchString = window.location.href.substring(window.location.href.indexOf('search=')+7, window.location.href.indexOf('&'));
+			 searchString = window.location.href.substring(window.location.href.indexOf('search=')+7, window.location.href.indexOf('&'));
 		}
+		
 		
 		console.log(searchString);
 		var sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5);
@@ -120,8 +122,8 @@
 				if(categoryString.length < 20 && categoryString.length > 0){ // no category string will be above 20 characters
 					appList = filterCategory(appList, categoryString);
 				}
-
-				if(appList.length == 0){
+				console.log(appList.length);
+				if(appList.length != 0){
 					appList.forEach(function(item, index){
 						$("#app-list").append(getAppElement(item, item.key)); //session.js
 					});
