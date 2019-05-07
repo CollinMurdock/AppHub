@@ -14,22 +14,21 @@ $(document).ready(function(){
 	}
 	
 
-	var dev = $("#whatever").val();
 
-	var devs = [dev, "me"];
+	
 
 	let platforms = ["iOS", "Android"];
 
 	//a basic app
-	let app = new App("Snapchat",
+	let app = new App("Pinterest",
 					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a eros quis odio scelerisque rhoncus non sed lorem. Nunc tempus augue sed urna egestas, sit amet eleifend ex cursus. Nunc pellentesque eros aliquet nisi hendrerit imperdiet. Aliquam ornare rhoncus volutpat. Duis vitae tellus et purus facilisis blandit. Vestibulum nec ante sed quam dignissim iaculis. Suspendisse in ornare mi, ac mollis orci. Quisque lorem leo, varius non placerat non, interdum non erat. Curabitur congue, sapien ut condimentum facilisis, arcu enim pretium mi, ut faucibus sem neque non tortor. Suspendisse luctus dui eget mi dignissim faucibus. Donec iaculis mi non velit ultricies, dapibus accumsan sem convallis. Ut ac elit mi. Nulla facilisi. Maecenas eu ex maximus, pulvinar nunc sollicitudin, cursus metus.\
 					Cras efficitur, nulla ut luctus ultrices, sapien est egestas turpis, at cursus ante dolor et nulla. Suspendisse vestibulum velit ut ipsum fringilla viverra. Curabitur condimentum, elit mollis iaculis lacinia, risus mauris laoreet nunc, nec rutrum tellus ligula sit amet dui. Maecenas tortor est, semper nec diam a, placerat elementum odio. Quisque magna dolor, rutrum at interdum id, volutpat quis diam. Integer volutpat euismod placerat. Fusce justo quam, fringilla nec interdum non, venenatis id arcu. Aliquam posuere urna eget auctor porta. Fusce.",
-					["Span Inc"],
+					["Pinterest Inc", "Me"],
 					platforms,
-					"10.2",
+					"5.11",
 					0,
-					"https://snapchat.com",
-					"Images");
+					"https://pinterest.com",
+					"Shopping");
 	
 	//createApp(app);
 });
@@ -183,5 +182,7 @@ function filter(){
 			break;
 	}
 
-	window.location.href = "index.html?sort="+sortString;
+	var category = $("#category-select").val().replace(" ","+");
+
+	window.location.href = "index.html?sort="+sortString+"&cat="+category;
 }
