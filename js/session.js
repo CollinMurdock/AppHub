@@ -5,6 +5,7 @@ var MAX_COMMENT_BODY_LENGTH = 350;
 
 //gets run before anything
 $(document).ready(function(){
+
 	initializeFirebase();
 	var user = sessionStorage.getItem("user");
 	if(user !== null){
@@ -31,6 +32,7 @@ $(document).ready(function(){
 					"Livestream");
 	
 	//createApp(app);
+	// let href = window.location.href.substring(0, (window.location.href.indexOf("sort")-1));
 });
 
 function userLoggedIn(user){
@@ -186,7 +188,61 @@ function filter(){
 
 	var categoryString = "";
 	if(!($("#category-select").val() == "All")){
-		categoryString= "&cat=" + $("#category-select").val().replace(" ","+");
+		categoryString= $("#category-select").val().replace(" ","+");
 	}
-	window.location.href = "index.html?sort="+sortString+categoryString;
+
+	
+	var url = window.location.href;
+	if(url.indexOf("search") > -1){
+		if(url.indexOf("&") > -1){
+			url = url.substring(0,url.indexOf("&")) + "&sort="+sortString+"&cat="+categoryString;
+		}else{
+			url += "&sort="+sortString+"&cat="+categoryString;
+		}
+	}else{
+		url = "index.html?sort="+sortString+"&cat="+categoryString;
+	}
+	window.location.href = url;
+
+	//window.location.href = href+"?sort="+sortString+categoryString;
+
+	// if(page == 1){
+	// 	window.location.href = "index.html?sort="+sortString+categoryString;
+	// }else{
+	// 	window.location.href = "searchResults.html?sort="+sortString+categoryString;
+	// }
+}
+
+
+
+//filtering functions
+function filterCategory(list, category){
+	var result = [];
+	list.forEach(function(item, index){
+		if(item.category == category){
+			result.push(item);
+		}
+	});
+	return result;
+}
+
+
+//sorting functions
+function sortAlphabeticalHigh(a,b){
+	let x = a.name.toUpperCase();
+	let y = b.name.toUpperCase();
+	return ((x > y) ? -1 : 1);
+}
+function sortAlphabeticalLow(a,b){
+	let x = a.name.toUpperCase();
+	let y = b.name.toUpperCase();
+	return ((x < y) ? -1 : 1);
+}
+
+function sortPriceHigh(a,b){
+	return ((a.price > b.price) ? -1 : 1);
+}
+
+function sortPriceLow(a,b){
+	return ((a.price < b.price) ? -1 : 1);
 }

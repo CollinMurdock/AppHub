@@ -37,9 +37,31 @@
 	</header>
 
 	<div id="search-bar">
-		<div id="search-inputs">
-			<input type="text" id="search-box" placeholder="Search here">
-			<button id="search-button" onclick="search()">Search</button>
+		<div class="container">
+			<div id="search-inputs">
+				<input type="text" id="search-box" placeholder="Search here">
+				<button id="search-button" onclick="search()">Search</button>
+			</div>
+			<div class="filter-inputs">
+				<label>Category: </label>
+				<select id="category-select">
+					<option>All</option>
+					<option>Media Sharing</option>
+					<option>Blog</option>
+					<option>Shopping</option>
+					<option>News</option>
+					<option>Podcasts</option>
+					<option>Livestream</option>
+				</select>
+				<label>Order: </label>
+				<select id="order-select">
+					<option>Alphabetical - Low to High</option>
+					<option>Alphabetical - High to Low</option>
+					<option>Price - Low to High</option>
+					<option>Price - High to Low</option>
+				</select>
+				<button id="filter-button" onclick="filter()">Filter</button>
+			</div>
 		</div>
 	</div>
 
@@ -52,12 +74,19 @@
 
 
 	<script type="text/javascript">
-		var searchString;
+		if(window.location.href.indexOf('&') == -1){
+			var searchString = window.location.href.substring(window.location.href.indexOf('search=')+7);
+		}else{
+			var searchString = window.location.href.substring(window.location.href.indexOf('search=')+7, window.location.href.indexOf('&'));
+		}
+		
+		console.log(searchString);
+		var sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5);
+		var categoryString = window.location.href.substring(window.location.href.indexOf('cat=')+4).replace("+", " ");
+
+		var appList = [];
 
 		$(document).ready(function(){
-			searchString = window.location.href.substring(window.location.href.indexOf('=')+1);
-			console.log(searchString);
-
 			let ref = database.ref('Apps');
 
 			let empty = true;
@@ -65,14 +94,39 @@
 			ref.once('value', function(snapshot){
 				snapshot.forEach(function(snapshot){
 					let app = snapshot.val();
+					app.key = snapshot.key;
 					if(app.name.toUpperCase().includes(searchString.toUpperCase())){
-						$("#app-list").append(getAppElement(app, snapshot.key)); //session.js
+						appList.push(app);
 						empty = false;
 					}
 				});
-				if(empty){
+
+				//what to sort by
+				if(sortString=="ahigh"){
+					console.log(appList.length);
+					appList.sort(sortAlphabeticalHigh);
+				}else if(sortString=="phigh"){
+					appList.sort(sortPriceHigh);
+				}else if(sortString=="plow"){
+					appList.sort(sortPriceLow);
+				}else{
+					appList.sort(sortAlphabeticalLow);
+				}
+
+				//what category
+
+				if(categoryString.length < 20 && categoryString.length > 0){ // no category string will be above 20 characters
+					appList = filterCategory(appList, categoryString);
+				}
+
+				if(appList.length == 0){
+					appList.forEach(function(item, index){
+						$("#app-list").append(getAppElement(item, item.key)); //session.js
+					});
+				}else{
 					$("#app-list").append("<h3>No apps found :(</h3>");
 				}
+
 			});
 		});
 

@@ -81,6 +81,9 @@
 
 			let ref = database.ref('Apps');
 
+			var sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5);
+			var categoryString = window.location.href.substring(window.location.href.indexOf('cat=')+4).replace("+", " ");
+
 			ref.once('value', function(snapshot){
 				snapshot.forEach(function(snapshot){
 					let app = snapshot.val();
@@ -88,8 +91,7 @@
 					appList.push(app);
 					//$("#app-list").append(getAppElement(app, snapshot.key)); //session.js
 				});
-				sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5);
-				categoryString = window.location.href.substring(window.location.href.indexOf('cat=')+4).replace("+", " ");
+				
 				
 				//what to sort by
 				if(sortString=="ahigh"){
@@ -104,13 +106,10 @@
 
 				//what category
 
-				if(categoryString.length < 20){ // no category string will be above 20 characters
+				if(categoryString.length < 20 && categoryString.length > 0){ // no category string will be above 20 characters
 					console.log(categoryString);
 					appList = filterCategory(appList, categoryString);
 				}
-
-
-				
 
 				appList.forEach(function(item, index){
 					$("#app-list").append(getAppElement(item, item.key)); //session.js
@@ -120,36 +119,7 @@
 			
 		});
 
-		function filterCategory(list, category){
-			var result = [];
-			list.forEach(function(item, index){
-				if(item.category == category){
-					result.push(item);
-				}
-			});
-			return result;
-		}
-
-
-		//sorting functions
-		function sortAlphabeticalHigh(a,b){
-			let x = a.name.toUpperCase();
-			let y = b.name.toUpperCase();
-			return ((x > y) ? -1 : 1);
-		}
-		function sortAlphabeticalLow(a,b){
-			let x = a.name.toUpperCase();
-			let y = b.name.toUpperCase();
-			return ((x < y) ? -1 : 1);
-		}
-
-		function sortPriceHigh(a,b){
-			return ((a.price > b.price) ? -1 : 1);
-		}
-		
-		function sortPriceLow(a,b){
-			return ((a.price < b.price) ? -1 : 1);
-		}		
+				
 	</script>
 
 </body>
