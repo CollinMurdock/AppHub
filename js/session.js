@@ -168,4 +168,20 @@ function search(){
 	var searchString = $("#search-box").val();
 	window.location.href = "searchResults.html?search="+searchString;
 }
+function filter(){
+	var selectVal = $("#order-select").val();
+	var sortString = "";
+	switch(selectVal){
+		case "Alphabetical - High to Low":
+			sortString = "ahigh";
+			break;
+		case "Price - Low to High":
+			sortString = "plow";
+			break;
+		case "Price - High to Low":
+			sortString = "phigh";
+			break;
+	}
 
+	window.location.href = "index.html?sort="+sortString;
+}

@@ -57,12 +57,12 @@
 				</select>
 				<label>Order: </label>
 				<select id="order-select">
-					<option>Alphabetical - High to Low</option>
 					<option>Alphabetical - Low to High</option>
-					<option>Price - High to Low</option>
+					<option>Alphabetical - High to Low</option>
 					<option>Price - Low to High</option>
+					<option>Price - High to Low</option>
 				</select>
-				<button id="filter-button">Filter</button>
+				<button id="filter-button" onclick="filter()">Filter</button>
 			</div>
 		</div>
 	</div>
@@ -89,47 +89,45 @@
 					//$("#app-list").append(getAppElement(app, snapshot.key)); //session.js
 				});
 				sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5);
-				console.log("sort: "+sortString)
+				
 				if(sortString=="ahigh"){
-					displayAlphabeticalHigh();
+					appList.sort(sortAlphabeticalHigh);
+				}else if(sortString=="phigh"){
+					appList.sort(sortPriceHigh);
+				}else if(sortString=="plow"){
+					appList.sort(sortPriceLow);
 				}else{
-					displayAlphabeticalLow();
+					appList.sort(sortAlphabeticalLow);
 				}
+				appList.forEach(function(item, index){
+					$("#app-list").append(getAppElement(item, item.key)); //session.js
+				});
 			});
 
 			
 		});
 
-		function displayAlphabeticalHigh(){
-			var alphabeticalHighApps = appList.sort(sort);
 
 
-			alphabeticalHighApps.forEach(function(item, index){
-				$("#app-list").append(getAppElement(item, item.key)); //session.js
-			});
-
-			function sort(a,b){
-				let x = a.name.toUpperCase();
-				let y = b.name.toUpperCase();
-				return ((x > y) ? -1 : 1);
-			}
+		//sorting functions
+		function sortAlphabeticalHigh(a,b){
+			let x = a.name.toUpperCase();
+			let y = b.name.toUpperCase();
+			return ((x > y) ? -1 : 1);
+		}
+		function sortAlphabeticalLow(a,b){
+			let x = a.name.toUpperCase();
+			let y = b.name.toUpperCase();
+			return ((x < y) ? -1 : 1);
 		}
 
-		function displayAlphabeticalLow(){
-			var alphabeticalHighApps = appList.sort(sort);
-
-
-			alphabeticalHighApps.forEach(function(item, index){
-				$("#app-list").append(getAppElement(item, item.key)); //session.js
-			});
-
-			function sort(a,b){
-				let x = a.name.toUpperCase();
-				let y = b.name.toUpperCase();
-				return ((x < y) ? -1 : 1);
-			}
+		function sortPriceHigh(a,b){
+			return ((a.price > b.price) ? -1 : 1);
 		}
 		
+		function sortPriceLow(a,b){
+			return ((a.price < b.price) ? -1 : 1);
+		}		
 	</script>
 
 </body>
