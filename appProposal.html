@@ -96,18 +96,13 @@ function submitApp(){
 </script>
 
 <script type="text/javascript">
-var counter = 1;
-var dynamicInput = [];
 function addText()
 {
-    var newinput = document.createElement('input');
-	newinput.id = dynamicInput[counter];
-    newinput.innerHTML = "Entry " + (counter + 1) + " <br><input type='text' id='Developers'><br>";
-    document.getElementById('formID').appendChild(newinput);
-    counter++;
-	
-	   
-  
+     var newdiv = document.createElement('input');
+     newdiv.innerHTML = "<br><input type='text' id='Developers'><br>";
+	 //document.getElementById("Developers").appendChild(newdiv);
+	 
+	 document.getElementById("Developers").parentNode.insertBefore(newdiv, document.getElementById("Developers").nextSibling);
 }
 </script>
 
