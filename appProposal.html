@@ -64,7 +64,7 @@
 		<b>Links to App Stores</b><br>
 		<input type="text" id = "Link"><button id = "fieldAddition" onclick="addTextLink();">Add Another</button><br>
 		<b>Categories</b><br>
-		<select>
+		<select id="category-select">
 			<option>Media Sharing</option>
 			<option>Blog</option>
 			<option>Shopping</option>
@@ -76,7 +76,7 @@
 		
 	
 		
-<button id="submit" onclick="submitApp()">Submit</button>
+<button id="submit"  onclick="submitApp()">Submit</button>
 
 	</form>
 <script type="text/javascript">
@@ -89,8 +89,9 @@ function submitApp(){
 	var version = document.getElementById("Version").value;
 	var price = document.getElementById("Price").value;
 	var links = document.getElementById("Link").value;
+	var category = $("#category-select").val();
 	
-	let application = new App(appName,desc,devs,platform,version,price,links,"catagories"); //placeholder for catagories
+	let application = new App(appName,desc,devs,platform,version,price,links,category); //placeholder for catagories
 	proposeApp(application); //firebasefunction.js
 
 }

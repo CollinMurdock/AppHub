@@ -31,7 +31,7 @@ $(document).ready(function(){
 					"https://twitch.com",
 					"Livestream");
 	
-	//createApp(app);
+	//propseApp(app);
 	// let href = window.location.href.substring(0, (window.location.href.indexOf("sort")-1));
 });
 
