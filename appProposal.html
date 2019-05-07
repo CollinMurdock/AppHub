@@ -52,17 +52,15 @@
 		<textarea rows="10" cols="75" id = "Description"></textarea><br>
 		<b>Developers</b><br>
 		<input type="text" id = "Developers"><button id="fieldAddition" onclick="addText();">Add Another</button><br>
-		
 
-		
 		<b>Platform</b><br>
-		<input type="text" id = "Platforms"><button id = "fieldAddition" onclick="addText();" >Add Another</button><br>
+		<input type="text" id = "Platforms"><button type="button" id="fieldAddition" onclick="addText()" >Add Another</button><br>
 		<b>Version</b><br>
 		<input type="text" id = "Version"><br>
 		<b>Price</b><br>
 		<input type="text" id = "Price"><br>
 		<b>Links to App Stores</b><br>
-		<input type="text" id = "Link"><button id = "fieldAddition" onclick="addTextLink();">Add Another</button><br>
+		<input type="text" id = "Link"><button id = "fieldAddition" onclick="addTextLink()">Add Another</button><br>
 		<b>Categories</b><br>
 		<select id="category-select">
 			<option>Media Sharing</option>
@@ -97,7 +95,12 @@ function submitApp(){
 }
 </script>
 
-
+<script type="text/javascript">
+function addText()
+{
+	<input type="text" id = "Developers">
+}
+</script>
 
 
 </body>
