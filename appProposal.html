@@ -51,15 +51,15 @@
 		<b>Description</b><br>
 		<textarea rows="10" cols="75" id = "Description"></textarea><br>
 		<b>Developers</b><br>
-		<input type="text" id = "Developers"><br>
+		<input type="text" id = "Developers"><button type="button" onclick="addTextDev()">Add Another</button><br>
 		<b>Platform</b><br>
-		<input type="text" id = "Platforms"><br>
+		<input type="text" id = "Platforms"><button type="button" onclick="addTextPlat()" >Add Another</button><br>
 		<b>Version</b><br>
 		<input type="text" id = "Version"><br>
 		<b>Price</b><br>
 		<input type="text" id = "Price"><br>
 		<b>Links to App Stores</b><br>
-		<input type="text" id = "Link"><br>
+		<input type="text" id = "Link"><button type="button" onclick="addTextLink()">Add Another</button><br>
 		<b>Categories</b><br>
 		<select id="category-select">
 			<option>Media Sharing</option>
@@ -94,8 +94,30 @@ function submitApp(){
 }
 </script>
 
-
-
+<script type="text/javascript">
+function addTextDev()
+{
+     var newinput = document.createElement('input');
+     newinput.innerHTML = "<br><input type='text' id='Developers'><br>";
+	 document.getElementById("Developers").parentNode.insertBefore(newinput, document.getElementById("Developers").nextSibling);
+}
+</script>
+<script type="text/javascript">
+function addTextPlat()
+{
+     var newinput = document.createElement('input');
+     newinput.innerHTML = "<br><input type='text' id='Platforms'><br>";
+	 document.getElementById("Platforms").parentNode.insertBefore(newinput, document.getElementById("Platforms").nextSibling);
+}
+</script>
+<script type="text/javascript">
+function addTextLink()
+{
+     var newinput = document.createElement('input');
+     newinput.innerHTML = "<br><input type='text' id='Link'><br>";
+	 document.getElementById("Link").parentNode.insertBefore(newinput, document.getElementById("Link").nextSibling);
+}
+</script>
 
 </body>
 </html>
