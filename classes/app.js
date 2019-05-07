@@ -12,7 +12,7 @@ class App{
 
 	constructor(name, desc, devs, 
 				platforms, version, 
-				price, link, categories){
+				price, link, category){
   		this.name = name;
   		this.desc = desc;
   		this.devs = devs;
@@ -20,7 +20,7 @@ class App{
   		this.version = version;
   		this.price = price;
   		this.link = link;
-  		this.categories = categories;
+  		this.category = category;
   		this.comments = null;
  	}
 }
