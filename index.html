@@ -89,7 +89,9 @@
 					//$("#app-list").append(getAppElement(app, snapshot.key)); //session.js
 				});
 				sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5);
+				categoryString = window.location.href.substring(window.location.href.indexOf('cat=')+4).replace("+", " ");
 				
+				//what to sort by
 				if(sortString=="ahigh"){
 					appList.sort(sortAlphabeticalHigh);
 				}else if(sortString=="phigh"){
@@ -99,14 +101,35 @@
 				}else{
 					appList.sort(sortAlphabeticalLow);
 				}
+
+				//what category
+
+				if(categoryString.length < 20){ // no category string will be above 20 characters
+					console.log(categoryString);
+					appList = filterCategory(appList, categoryString);
+				}
+
+
+				
+
 				appList.forEach(function(item, index){
 					$("#app-list").append(getAppElement(item, item.key)); //session.js
+					console.log(item.category);
 				});
 			});
 
 			
 		});
 
+		function filterCategory(list, category){
+			var result = [];
+			list.forEach(function(item, index){
+				if(item.category == category){
+					result.push(item);
+				}
+			});
+			return result;
+		}
 
 
 		//sorting functions
