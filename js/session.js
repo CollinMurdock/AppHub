@@ -20,15 +20,15 @@ $(document).ready(function(){
 	let platforms = ["iOS", "Android"];
 
 	//a basic app
-	let app = new App("Pinterest",
+	let app = new App("Twitch",
 					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a eros quis odio scelerisque rhoncus non sed lorem. Nunc tempus augue sed urna egestas, sit amet eleifend ex cursus. Nunc pellentesque eros aliquet nisi hendrerit imperdiet. Aliquam ornare rhoncus volutpat. Duis vitae tellus et purus facilisis blandit. Vestibulum nec ante sed quam dignissim iaculis. Suspendisse in ornare mi, ac mollis orci. Quisque lorem leo, varius non placerat non, interdum non erat. Curabitur congue, sapien ut condimentum facilisis, arcu enim pretium mi, ut faucibus sem neque non tortor. Suspendisse luctus dui eget mi dignissim faucibus. Donec iaculis mi non velit ultricies, dapibus accumsan sem convallis. Ut ac elit mi. Nulla facilisi. Maecenas eu ex maximus, pulvinar nunc sollicitudin, cursus metus.\
 					Cras efficitur, nulla ut luctus ultrices, sapien est egestas turpis, at cursus ante dolor et nulla. Suspendisse vestibulum velit ut ipsum fringilla viverra. Curabitur condimentum, elit mollis iaculis lacinia, risus mauris laoreet nunc, nec rutrum tellus ligula sit amet dui. Maecenas tortor est, semper nec diam a, placerat elementum odio. Quisque magna dolor, rutrum at interdum id, volutpat quis diam. Integer volutpat euismod placerat. Fusce justo quam, fringilla nec interdum non, venenatis id arcu. Aliquam posuere urna eget auctor porta. Fusce.",
-					["Pinterest Inc", "Me"],
+					["Twitter Inc", "Me"],
 					platforms,
-					"5.11",
+					"3",
 					0,
-					"https://pinterest.com",
-					"Shopping");
+					"https://twitch.com",
+					"Livestream");
 	
 	//createApp(app);
 });
@@ -102,6 +102,7 @@ function getAppElement(app, key){
 			<div class="pure-u-1-5 price"><p><b>Price:</b></p>'+price+'</div>\
 			<div class="pure-u-1-5 devs"><p><b>Developers</b></p><ul>'+listElements(app.devs)+'</ul></div>\
 			<div class="pure-u-1-5 plats"><p><b>Platforms</b></p><ul>'+listElements(app.platforms)+'</ul></div>\
+			<div class="pure-u-1-6 category"><p><b>Category</b></p>'+app.category+'</div>\
 			<div class="pure-u-1-5 link"><a href="'+app.link+'">Link</a></div>\
 		</div>\
 		</li>');
@@ -132,11 +133,12 @@ function getAppProposalElement(app, key){
 	element += '<div class="accept-deny-buttons"><button class="accept-app">Accept</button><button class="deny-app">Deny</button></div>';
 	element += '</div>';
 	element += '<div class="bottom-block pure-g">';
-	element += '<div class="pure-u-1-5 version"><p><b>Version</b></p>'+app.version+'</div>';
-	element += '<div class="pure-u-1-5 price"><p><b>Price:</b></p>'+price+'</div>';
-	element += '<div class="pure-u-1-5 devs"><p><b>Developers</b></p><ul>'+listElements(app.devs)+'</ul></div>';
-	element += '<div class="pure-u-1-5 plats"><p><b>Platforms</b></p><ul>'+listElements(app.platforms)+'</ul></div>';
-	element += '<div class="pure-u-1-5 link"><a href="'+app.link+'">Link</a></div>';
+	element += '<div class="pure-u-1-6 version"><p><b>Version</b></p>'+app.version+'</div>';
+	element += '<div class="pure-u-1-6 price"><p><b>Price:</b></p>'+price+'</div>';
+	element += '<div class="pure-u-1-6 devs"><p><b>Developers</b></p><ul>'+listElements(app.devs)+'</ul></div>';
+	element += '<div class="pure-u-1-6 plats"><p><b>Platforms</b></p><ul>'+listElements(app.platforms)+'</ul></div>';
+	element += '<div class="pure-u-1-6 category"><p><b>Category</b></p>'+app.category+'</div>';	
+	element += '<div class="pure-u-1-6 link"><a href="'+app.link+'">Link</a></div>';
 	element += '</div>';
 	element += '<div class="proposal-desc"><p class="short-desc">'+ shortDesc;
 
@@ -182,7 +184,9 @@ function filter(){
 			break;
 	}
 
-	var category = $("#category-select").val().replace(" ","+");
-
-	window.location.href = "index.html?sort="+sortString+"&cat="+category;
+	var categoryString = "";
+	if(!($("#category-select").val() == "All")){
+		categoryString= "&cat=" + $("#category-select").val().replace(" ","+");
+	}
+	window.location.href = "index.html?sort="+sortString+categoryString;
 }
