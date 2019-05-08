@@ -18,7 +18,7 @@ https://p5js.org/learn/tdd.html
 ### Issues:
 
 1. Fix all of the errors in console on load
-2. Fix welcome message on left side of header
+2. **DONE**Fix welcome message on left side of header
 3. Make it so the user can just press enter to log in instead of clicking the button
 
 ### Other TODO:

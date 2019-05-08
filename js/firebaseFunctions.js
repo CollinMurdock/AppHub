@@ -77,7 +77,7 @@ function compareUsernames(data){
   if(available){
     makeAccount(username, $("#password").val());
   }else{
-    alert("Unable to create account");
+    alert("Username Taken");
   }
 }
 

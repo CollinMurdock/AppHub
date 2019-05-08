@@ -44,6 +44,12 @@
 
 <script>
 
+$(document).on('keypress',function(e) {
+    if(e.which == 13) {
+        logIn();
+    }
+});
+
 function logIn(){
 	var username = $("#username").val();
 	var password = $("#password").val();
