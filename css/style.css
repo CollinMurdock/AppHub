@@ -54,9 +54,15 @@ li h2{
 .app-container b{
 	border-bottom: 1px solid gray;
 }
+.app-container p{
+	padding: 10px 0;
+}
+#comment-section{
+	margin: 50px 0;
+}
 .comment{
 	padding: 50px 0px;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 .comment-title{
 	padding-right: 20px;

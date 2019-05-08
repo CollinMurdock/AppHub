@@ -51,6 +51,7 @@
 		<div class="description"><p><b>Description</b></p></div>
 		<div id="comment-section">
 			<h2>Comments</h2>
+			<h4 id="no-comments-label" style="display:none;">No Comments</h4>
 			<div id="make-comment">
 				<h4>Leave a comment</h4>
 					<p>Title</p>
@@ -85,6 +86,8 @@
 
 		//called to display all of the comments
 		function displayAllComments(){
+			var noComments = true;
+
 			//if there are already comments in there, get rid of them
 			$("#comment-list").empty();
 			let ref = database.ref('Apps/'+appKey+'/comments');
@@ -92,6 +95,7 @@
 			//get the data from firebase and loop through each child
 			ref.once('value', function(snapshot){
 				snapshot.forEach(function(snapshot){
+					noComments = false;
 					//comment object
 					let comment = snapshot.val();
 					//append comment element to the <ul>
@@ -107,14 +111,25 @@
 					deleteComment(appKey, this.classList[1]);
 				});
 			});
+			if(noComments){
+				$("#no-comments-label").css("display","none");
+			}
+
 		}
 
 
 		//called directly to load the app
 		function displayApp(app){
+			var price;
+			if(app.price != 0)
+				price = "$" + app.price;
+			else
+				price = "Free!";
+			
+			
 			$("#appName").append(app.name);
 			$(".version").append(app.version);
-			$(".price").append(app.price);
+			$(".price").append(price);
 			$(".devs").append(listElements(app.devs));
 			$(".plats").append(listElements(app.platforms));
 			$(".link").append('<a href="'+app.link+'">Link Name</a>');
