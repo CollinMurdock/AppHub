@@ -86,6 +86,9 @@ li h2{
 	padding-left: 50px;
 	float: left;
 }
+#app-review-button{
+	display: none;
+}
 
 /*Search bar*/
 #search-bar{
