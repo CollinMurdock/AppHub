@@ -76,14 +76,18 @@
 		var appList;
 
 		$(document).ready(function(){
+			//container for the apps
 			appList=[];
 
 			let ref = database.ref('Apps');
-
+			
+			//get sort string and category string from url query
 			var sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5,window.location.href.indexOf('&cat'));
 			var categoryString = window.location.href.substring(window.location.href.indexOf('cat=')+4).replace("+", " ");
 
+			//get snapshot of aps
 			ref.once('value', function(snapshot){
+				//cycle through apps and add them to the appList
 				snapshot.forEach(function(snapshot){
 					let app = snapshot.val();
 					app.key = snapshot.key;
@@ -91,7 +95,7 @@
 				});
 				
 				
-				//what to sort by
+				//what to sort by. these functions are in session.js
 				if(sortString=="ahigh"){
 					appList.sort(sortAlphabeticalHigh);
 				}else if(sortString=="phigh"){
@@ -105,10 +109,10 @@
 				//what category
 
 				if(categoryString.length < 20 && categoryString.length > 0){ // no category string will be above 20 characters
-					console.log(categoryString);
 					appList = filterCategory(appList, categoryString);
 				}
 
+				//add apps to list element
 				appList.forEach(function(item, index){
 					$("#app-list").append(getAppElement(item, item.key)); //session.js
 				});

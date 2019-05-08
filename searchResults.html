@@ -77,6 +77,7 @@
 
 
 	<script type="text/javascript">
+		//get the search string from the url query
 		var searchString;
 		if(window.location.href.indexOf('&') == -1){
 			 searchString = window.location.href.substring(window.location.href.indexOf('search=')+7);
@@ -84,8 +85,7 @@
 			 searchString = window.location.href.substring(window.location.href.indexOf('search=')+7, window.location.href.indexOf('&'));
 		}
 		
-		
-		console.log(searchString);
+		//get sort string and category string from url query		
 		var sortString = window.location.href.substring(window.location.href.indexOf('sort=')+5);
 		var categoryString = window.location.href.substring(window.location.href.indexOf('cat=')+4).replace("+", " ");
 
@@ -95,20 +95,21 @@
 			let ref = database.ref('Apps');
 
 			let empty = true;
-
+			//get snapshot of data
 			ref.once('value', function(snapshot){
+				//cycle through apps
 				snapshot.forEach(function(snapshot){
 					let app = snapshot.val();
 					app.key = snapshot.key;
+					//if the app name contains the search string, add it to the list
 					if(app.name.toUpperCase().includes(searchString.toUpperCase())){
 						appList.push(app);
 						empty = false;
 					}
 				});
 
-				//what to sort by
+				//what to sort by. sort functions in session.js
 				if(sortString=="ahigh"){
-					console.log(appList.length);
 					appList.sort(sortAlphabeticalHigh);
 				}else if(sortString=="phigh"){
 					appList.sort(sortPriceHigh);
@@ -123,7 +124,7 @@
 				if(categoryString.length < 20 && categoryString.length > 0){ // no category string will be above 20 characters
 					appList = filterCategory(appList, categoryString);
 				}
-				console.log(appList.length);
+				//if list is empty, display "No apps found"
 				if(appList.length != 0){
 					appList.forEach(function(item, index){
 						$("#app-list").append(getAppElement(item, item.key)); //session.js

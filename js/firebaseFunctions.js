@@ -1,12 +1,14 @@
 var database;
 
+
+//function to initialize the Firebase reference
 function initializeFirebase() {
   var config = {
     apiKey: "AIzaSyD7gIjZY2-hxf4VomP9OVgpdYEQ56BiZV0",
     authDomain: "test-24872.firebaseapp.com",
     databaseURL: "https://test-24872.firebaseio.com",
     projectId: "test-24872",
-    storageBucket: "test-24872.appspot.com",  
+    storageBucket: "test-24872.appspot.com",
     messagingSenderId: "235886486129"
   };
   firebase.initializeApp(config);
@@ -14,11 +16,13 @@ function initializeFirebase() {
   database = firebase.database();
 }
 
+//when logging in
 function verifyCredentials() {
   let ref = database.ref('Accounts');
   ref.once('value', getAccountData, onError);
 }
 
+//check the user's input to account data
 function getAccountData(data) {
   let username = $("#username").val();
   let password = $("#password").val();
@@ -42,9 +46,10 @@ function getAccountData(data) {
         }else{
           activeUser = new Admin(username, password);
         }
+        //add logged in user to sessionStorage
+        //sessionStorage can only take string types,
+        //will .stringify() and .parse() later
         sessionStorage.setItem("user", JSON.stringify(activeUser));
-        console.log("Logged In success\nUsername: "
-          +activeUser.username+" password: "+activeUser.password);
       }
     }
   }
@@ -52,9 +57,11 @@ function getAccountData(data) {
   if (!success)
     alert("unsuccessful");
   else
-      window.location.href="index.html";
+      window.location.href="index.html"; //link to home page
 }
 
+
+//checks user names against usernames already taken when creating an account
 function checkExistingUsername(){
   let ref = database.ref('Accounts');
   ref.once('value', compareUsernames, onError);
@@ -62,7 +69,6 @@ function checkExistingUsername(){
 
 function compareUsernames(data){
   let username = $("#username").val();
-  console.log(username);
   
   let accountData = data.val();
   let keys = Object.keys(accountData);
@@ -81,21 +87,23 @@ function compareUsernames(data){
   }
 }
 
+//adds the user object to firebase
 function makeAccount(username, password){
   if(username === '' || password === '') return;
   let ref = database.ref('Accounts');
   let account = {
     username : username,
     password : password,
-    accountType : "user"
+    accountType : "user" 
   }
-  
+  //accountType is default user, only people with access to
+  //firebase can change a user's account level
+
   ref.push(account);
+  //add the user to sessionStorage and link to index
   activeUser = new User(username, password);
   sessionStorage.setItem("user", JSON.stringify(activeUser));
   window.location.href="index.html";
-
-  
 }
 
 function onError(error) {
@@ -108,7 +116,6 @@ function onError(error) {
 function createApp(app){
   let ref = database.ref('Apps');
   
-  // where we check to make sure things aren't taken (still needs to be done)
   ref.push(app);
 }
 
@@ -116,33 +123,30 @@ function proposeApp(app){
   //adds to proposed node
   let ref = database.ref('ProposedApps');
   console.log("hey");
-  // where we check to make sure things aren't taken (still needs to be done)
-  ref.push(app);
-}
+  var valid = true;
 
-
-function getApp(key){
-  let ref = database.ref('Apps');
-  var app;
-
+  //make sure the app is valid
   ref.once('value',function(snapshot){
-    snapshot.forEach(function(snapshot){
-      if(key === snapshot.key){
-        app = snapshot.val();
-        console.log(snapshot.key);
-        displayApp(app);
+    snapshot.forEach(function(data){
+      //check the proposed names against current app names
+      if(data.name.toUpperCase() == app.name.toUpperCase()){
+        alert("App name is already taken");
       }
     });
   });
+
+  if(valid)
+    ref.push(app);
 }
 
-
+//pushes a comment to firebase to app with key
 function addComment(key, comment){
   let ref = database.ref('Apps/'+key+'/comments');
   
   ref.push(comment);
 }
 
+//removes a comment with commentKey from app with appKey 
 function deleteComment(appKey, commentKey){
   var conf = confirm("Do you wish to delete this comment?");
   if(conf == true){

@@ -17,12 +17,12 @@ https://p5js.org/learn/tdd.html
 
 ### Issues:
 
-1. Fix all of the errors in console on load
-2. **DONE**Fix welcome message on left side of header
-3. Make it so the user can just press enter to log in instead of clicking the button
+1. **DONE** Fix all of the errors in console on load
+2. **DONE** Fix welcome message on left side of header
+3. **DONE** Make it so the user can just press enter to log in instead of clicking the button
 
 ### Other TODO:
 
-1. Compile all of the js includes into one so there isn't a bunch in the head of every .html file. Also decide what pages need which js files
+1. **DONE** Compile all of the js includes into one so there isn't a bunch in the head of every .html file. Also decide what pages need which js files
 2. **Done** Get rid of AppItem class. It can be done just with a function. 
 3. Make buttons nicer using Pure css

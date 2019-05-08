@@ -7,46 +7,33 @@ var MAX_COMMENT_BODY_LENGTH = 350;
 $(document).ready(function(){
 
 	initializeFirebase();
+
+	//get user item from sessionStorage
 	var user = sessionStorage.getItem("user");
 	if(user !== null){
 		userLoggedIn(user);
 	}else{
 		console.log("No one logged in");
 	}
-	
-
-
-	
-
-	let platforms = ["iOS", "Android"];
-
-	//a basic app
-	let app = new App("Twitch",
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a eros quis odio scelerisque rhoncus non sed lorem. Nunc tempus augue sed urna egestas, sit amet eleifend ex cursus. Nunc pellentesque eros aliquet nisi hendrerit imperdiet. Aliquam ornare rhoncus volutpat. Duis vitae tellus et purus facilisis blandit. Vestibulum nec ante sed quam dignissim iaculis. Suspendisse in ornare mi, ac mollis orci. Quisque lorem leo, varius non placerat non, interdum non erat. Curabitur congue, sapien ut condimentum facilisis, arcu enim pretium mi, ut faucibus sem neque non tortor. Suspendisse luctus dui eget mi dignissim faucibus. Donec iaculis mi non velit ultricies, dapibus accumsan sem convallis. Ut ac elit mi. Nulla facilisi. Maecenas eu ex maximus, pulvinar nunc sollicitudin, cursus metus.\
-					Cras efficitur, nulla ut luctus ultrices, sapien est egestas turpis, at cursus ante dolor et nulla. Suspendisse vestibulum velit ut ipsum fringilla viverra. Curabitur condimentum, elit mollis iaculis lacinia, risus mauris laoreet nunc, nec rutrum tellus ligula sit amet dui. Maecenas tortor est, semper nec diam a, placerat elementum odio. Quisque magna dolor, rutrum at interdum id, volutpat quis diam. Integer volutpat euismod placerat. Fusce justo quam, fringilla nec interdum non, venenatis id arcu. Aliquam posuere urna eget auctor porta. Fusce.",
-					["Twitter Inc", "Me"],
-					platforms,
-					"3",
-					0,
-					"https://twitch.com",
-					"Livestream");
-	
-	//propseApp(app);
-	// let href = window.location.href.substring(0, (window.location.href.indexOf("sort")-1));
 });
 
+//called when a user is logged in
 function userLoggedIn(user){
-	var objectString = JSON.parse(user);
+	//parse the JSON string into an object
+	var object = JSON.parse(user);
 
-	if(objectString.accountType === "user"){
-     	activeUser = new User(objectString.username, objectString.password);
-    }else if(objectString.accountType === "moderator"){
-     	activeUser = new Moderator(objectString.username, objectString.password);
+	//decide what type the object is
+	if(object.accountType === "user"){
+     	activeUser = new User(object.username, object.password);
+    }else if(object.accountType === "moderator"){
+     	activeUser = new Moderator(object.username, object.password);
     }else{
-     	activeUser = new Admin(objectString.username, objectString.password);
+		 activeUser = new Admin(object.username, object.password);
+		 //show app-review-button
     	$("#app-review-button").css("display","inline");
     }
 
+	//display or not display buttons
 	console.log("Logged in! Username: "+activeUser.username + " Credentials: "+activeUser.accountType);
 	$("#login-button").css("display","none");
 	$("#create-button").css("display","none");
@@ -57,39 +44,19 @@ function userLoggedIn(user){
 
 }
 
+//called when signing out
 function signOut(){
+	//remove user item from sessionStorage
 	sessionStorage.removeItem("user");
 	location.reload(true);
 	console.log("signed out");
 }
 
 
-function initializeFirebase() {
-  var config = {
-    apiKey: "AIzaSyD7gIjZY2-hxf4VomP9OVgpdYEQ56BiZV0",
-    authDomain: "test-24872.firebaseapp.com",
-    databaseURL: "https://test-24872.firebaseio.com",
-    projectId: "test-24872",
-    storageBucket: "test-24872.appspot.com",
-    messagingSenderId: "235886486129"
-  };
-  firebase.initializeApp(config);
-
-  database = firebase.database();
-}
-
-
-
-function listElements(list){
-	var result = "";
-	list.forEach(function(value){
-		result = result + "<li>" + value + "</li>";
-	});
-	return result;
-}
-
+//returns a string of an html element with the app's information
 function getAppElement(app, key){
 	var price;
+	//if price is 0, display free!
 	if(app.price != 0)
 		price = "$" + app.price;
 	else
@@ -115,11 +82,13 @@ function getAppElement(app, key){
 //returns a string of an app proposal element to be added in reviewApp.html
 function getAppProposalElement(app, key){
 	var price;
+	//if price is 0, display free!
 	if(app.price != 0)
 		price = "$" + app.price;
 	else
 		price = "Free!";
 
+	//this will display a 'read more' link if the description is greater than 75 characters
 	var shortDesc;
 	var readMore = false;
 	if(app.desc.length > 75){
@@ -143,10 +112,9 @@ function getAppProposalElement(app, key){
 	element += '<div class="pure-u-1-6 link"><a href="'+app.link+'">Link</a></div>';
 	element += '</div>';
 	element += '<div class="proposal-desc"><p class="short-desc">'+ shortDesc;
-
+	
 	if(readMore) element += '<span class="read-more" style="color:gray;">...Read more</span>';
-
-
+	
 	element += '</p>';
 	element += '<p class="full-desc" style="display:none;">'+ app.desc;
 	element += '<span class="read-less" style="color:gray;">...Read less</span></p></div>';
@@ -155,7 +123,14 @@ function getAppProposalElement(app, key){
 }
 
 
-
+//returns a string of listed objects surrounded with <li> tags
+function listElements(list){
+	var result = "";
+	list.forEach(function(value){
+		result = result + "<li>" + value + "</li>";
+	});
+	return result;
+}
 
 
 //make the search bar stick to the top when the page is scrolled so far
@@ -167,10 +142,13 @@ window.onscroll = function(){
 	}
 }
 
+//function that links to the search results page with the search query
 function search(){
 	var searchString = $("#search-box").val();
 	window.location.href = "searchResults.html?search="+searchString;
 }
+
+//function that reloads the page with the filter queries
 function filter(){
 	var selectVal = $("#order-select").val();
 	var sortString = "";
@@ -203,14 +181,6 @@ function filter(){
 		url = "index.html?sort="+sortString+"&cat="+categoryString;
 	}
 	window.location.href = url;
-
-	//window.location.href = href+"?sort="+sortString+categoryString;
-
-	// if(page == 1){
-	// 	window.location.href = "index.html?sort="+sortString+categoryString;
-	// }else{
-	// 	window.location.href = "searchResults.html?sort="+sortString+categoryString;
-	// }
 }
 
 
