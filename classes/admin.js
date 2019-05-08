@@ -7,4 +7,4 @@ class Admin extends Moderator {
 	}
 }
 
-module.exports = Admin;
+//module.exports = Admin;
