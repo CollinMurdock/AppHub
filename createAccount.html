@@ -18,6 +18,25 @@
 </head>
 <body>
 
+	<header>
+		<h1>AppHub</h1>
+		<div id="header-buttons">
+			<a href = "index.html" class = "header-button" id = "home-button">
+					<button id = "header-home">Home</button></a>
+			<a href="login.html"  class="header-button" id="login-button">
+				<button id="header-logIn">Login</button></a>
+			<a href="appProposal.html" class="header-button" id="proposal-button">
+				<button>Submit an App</button>
+			</a>
+			<a href="#" class="header-button" id="signout-button" onclick="signOut()">
+				<button>Sign Out</button>
+			</a>
+			<a href="reviewApp.html" class="header-button" id="app-review-button" style="display:none;">
+				<button>Review App Proposals</button>
+			</a>
+		</div>
+	</header>
+
 	<h1>Create Account</h1>
 	<span>Username:</span><input type="text" id="username">
 	<br>
