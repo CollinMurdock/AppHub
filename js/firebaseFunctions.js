@@ -82,6 +82,7 @@ function compareUsernames(data){
 }
 
 function makeAccount(username, password){
+  if(username === '' || password === '') return;
   let ref = database.ref('Accounts');
   let account = {
     username : username,
