@@ -48,7 +48,7 @@ function userLoggedIn(user){
 function signOut(){
 	//remove user item from sessionStorage
 	sessionStorage.removeItem("user");
-	location.reload(true);
+	window.location.href = 'index.html';
 	console.log("signed out");
 }
 

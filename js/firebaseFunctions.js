@@ -121,22 +121,40 @@ function createApp(app){
 
 function proposeApp(app){
   //adds to proposed node
-  let ref = database.ref('ProposedApps');
-  console.log("hey");
-  var valid = true;
+  
+  let appRef = database.ref('Apps');
+  var nameTaken = false;
 
   //make sure the app is valid
-  ref.once('value',function(snapshot){
+  appRef.once('value',function(snapshot){
     snapshot.forEach(function(data){
       //check the proposed names against current app names
-      if(data.name.toUpperCase() == app.name.toUpperCase()){
-        alert("App name is already taken");
+      
+      if(data.val().name.toUpperCase() == app.name.toUpperCase()){
+        nameTaken = true;
       }
     });
+    
+    if(nameTaken){
+      alert("App name is already taken");
+    }else{
+      checkProposalValues(app);
+    }
   });
+}
 
-  if(valid)
-    ref.push(app);
+//function that returns true if app proposal values are valid
+function checkProposalValues(app){
+  let proposedRef = database.ref('ProposedApps');
+  var valid = true;
+  if(app.name.length === 0 || app.desc.length == 0){
+    valid = false;
+  }
+  if(valid){
+    proposedRef.push(app);
+  }else{
+    alert("One or more of the values are invalid")
+  }
 }
 
 //pushes a comment to firebase to app with key
