@@ -226,6 +226,11 @@ function filterCategory(list, category){
 	return result;
 }
 
+//Used for testing purposes
+//var convert = {};
+//convert.filterCategory = filterCategory;
+//module.exports = convert;
+
 
 //sorting functions
 function sortAlphabeticalHigh(a,b){

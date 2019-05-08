@@ -17,8 +17,7 @@ describe('App Tests', function(){
   		let price = 'testPrice';
   		let link = 'testLink';
   		let categories = 'testCategories';
-  		let comments = 'testComments';
-		app = new App(desc, devs, platforms, version, price, link, categories, comments);
+		app = new App(name, desc, devs, platforms, version, price, link, categories);
 	});
 	
 	it('should be an object', function(done){
@@ -35,7 +34,7 @@ describe('App Tests', function(){
 		expect(app.getPrice()).to.equal('testPrice');
 		expect(app.getLink()).to.equal('testLink');
 		expect(app.getCategories()).to.equal('testCategories');
-		expect(app.getComments()).to.equal('testComments');
+		expect(app.getComments()).to.equal(null);
 		done();
 	});
 		
