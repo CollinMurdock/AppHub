@@ -2,14 +2,9 @@
 <head>
 	<title>Create Account</title>
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-	<script type="text/javascript" src="js/buttonFunctions.js"></script>
 	<script type="text/javascript" src="js/firebaseFunctions.js"></script>
 	<script type="text/javascript" src="js/session.js"></script>
-	<script type="text/javascript" src="classes/user.js"></script>
-	<script type="text/javascript" src="classes/moderator.js"></script>
-	<script type="text/javascript" src="classes/admin.js"></script>
 	<script type="text/javascript" src="classes/app.js"></script>
-	<script type="text/javascript" src="classes/appItem.js"></script>
 
 	<script type="text/javascript" src="js/firebase.js"></script>
 	<!-- CSS -->
@@ -49,7 +44,8 @@
 <script>
 
 $(document).on('keypress',function(e) {
-    if(e.which == 13) {
+	//e==13 means the Enter key was pressed
+	if(e.which == 13) {
         createAccount();
     }
 });
@@ -59,12 +55,17 @@ function createAccount(){
 	var password = $("#password").val();
 	var password2 = $("#password2").val();
 
+
+	
 	if(password != password2){
+		//passwords must match
 		alert("Passwords do not match");
 	}else if(username.length == 0){
-		alert("Username cannot be empty")
+		//username can't be empty
+		alert("Username cannot be empty");
 	}else if(password.length < 6){
-		alert("Password must be at least 6 characters long")
+		//password must be 6 characters long
+		alert("Password must be at least 6 characters long");
 	}else{
 		checkExistingUsername(new User(username, password)); //firebaseFunctions.js
 	}
