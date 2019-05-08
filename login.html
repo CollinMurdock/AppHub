@@ -23,5 +23,17 @@
 	<span>Password:</span><input type="password" id="password">
 	<button id="enter" onclick="logIn()">Enter</button> 
 
+<script>
+
+function logIn(){
+	var username = $("#username").val();
+	var password = $("#password").val();
+
+	var user = new User(username, password);
+	verifyCredentials();
+}
+
+</script>
+
 </body>
 </html>

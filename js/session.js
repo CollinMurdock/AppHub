@@ -93,7 +93,7 @@ function getAppElement(app, key){
 	if(app.price != 0)
 		price = "$" + app.price;
 	else
-		price = "Free!"
+		price = "Free!";
 
 	var element = $('<li class="app-item">\
 		<div class="top-block pure-g">\
@@ -175,10 +175,10 @@ function filter(){
 	var selectVal = $("#order-select").val();
 	var sortString = "";
 	switch(selectVal){
-		case "Alphabetical - High to Low":
+		case "Alphabetical - Z to A":
 			sortString = "ahigh";
 			break;
-		case "Price - Low to High":
+		case "Price - A to Z":
 			sortString = "plow";
 			break;
 		case "Price - High to Low":

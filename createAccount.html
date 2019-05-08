@@ -26,5 +26,23 @@
 	<span>Repeat Password:</span><input type="password" id="password2">
 	<button id="enter" onclick="createAccount()">Enter</button>
 
+
+<script>
+	
+function createAccount(){
+	var username = $("#username").val();
+	var password = $("#password").val();
+	var password2 = $("#password2").val();
+
+	if(password != password2){
+		alert("Passwords do not match");
+	}else{
+		checkExistingUsername(new User(username, password)); //firebaseFunctions.js
+	}
+
+}
+
+	
+</script>
 </body>
 </html>
