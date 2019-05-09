@@ -131,4 +131,7 @@ li h2{
 .app-proposal-item span:hover{
 	cursor: pointer;
 }
+div.inputs{
+	display: inline;
+}
 
