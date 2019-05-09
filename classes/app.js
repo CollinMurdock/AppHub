@@ -12,14 +12,14 @@ class App{
 
 	constructor(name, desc, devs, 
 				platforms, version, 
-				price, link, category){
+				price, links, category){
   		this.name = name;
   		this.desc = desc;
   		this.devs = devs;
   		this.platforms = platforms;
   		this.version = version;
   		this.price = price;
-  		this.link = link;
+  		this.links = links;
   		this.category = category;
   		this.comments = null;
  	}

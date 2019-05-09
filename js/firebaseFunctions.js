@@ -146,21 +146,26 @@ function proposeApp(app){
 //function that returns true if app proposal values are valid
 function checkProposalValues(app){
   let proposedRef = database.ref('ProposedApps');
-  var valid = true;
-  //name can't be empty
-  //description can't be empty
-  //app price must be a number
-  //must have price
-  //must have one of developer, platform and link
-  if(app.name.length === 0 || 
-      app.desc.length === 0 ||
-      isNaN(app.price)){
-    valid = false;
-  }
-  if(valid){
-    proposedRef.push(app);
+
+  //validity checking
+  if(app.name.length === 0){
+    //name can't be empty
+    alert("The app must have a name!");
+  }else if(app.desc.length === 0){
+    //description can't be empty
+    alert("The app must have a description!");
+  }else if(app.price.length === 0 || isNaN(app.price)){
+    alert("The price must be a number!");
+  }else if(app.devs.length === 0 || app.devs[0].length === 0){
+    alert("The app must have a developer!");
+  }else if(app.platforms.length === 0 || app.platforms[0].length === 0){
+    alert("The app must have a platform!");
+  }else if(app.version.length === 0){
+    alert("The app must have a version!");
+  }else if(app.links.length === 0 || app.links[0].length === 0){
+    alert("The app must have a link to an app store!");
   }else{
-    alert("One or more of the values are invalid")
+    proposedRef.push(app);
   }
 }
 

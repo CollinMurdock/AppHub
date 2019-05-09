@@ -106,7 +106,9 @@ function submitApp(){
 function getValues(inputNum, field){
 	var result = [];
 	for(var i = 1; i <= inputNum; i++){
-		result.push($("#"+field+"-inputs .inputs #"+field+i).val());
+		//inputs with no value will not be added to the array
+		if(($("#"+field+"-inputs .inputs #"+field+i).val().length != 0))
+			result.push($("#"+field+"-inputs .inputs #"+field+i).val());
 	}
 	return result;
 }
