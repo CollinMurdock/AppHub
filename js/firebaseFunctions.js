@@ -147,8 +147,12 @@ function proposeApp(app){
 function checkProposalValues(app){
   let proposedRef = database.ref('ProposedApps');
   var valid = true;
+  //name can't be empty
+  //description can't be empty
+  //app price must be a number
   if(app.name.length === 0 || 
-      app.desc.length === 0 ){
+      app.desc.length === 0 ||
+      !(/^\d+\.\d+$/.test(app.price))){
     valid = false;
   }
   if(valid){
