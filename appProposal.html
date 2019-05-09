@@ -50,12 +50,12 @@
 		<textarea rows="10" cols="75" id = "Description"></textarea><br>		
 		<div id="dev-inputs">
 			<b>Developers</b><br>
-			<div class="inputs"><input type="text" id = "devs1"></div>
+			<div class="inputs"><input type="text" id = "dev1"></div>
 			<button type="button" onclick="addTextDev()">Add Another</button>
 		</div>
 		<div id="plat-inputs">
 			<b>Platform</b><br>
-			<div class="inputs"><input type="text" id = "plats1"></div>
+			<div class="inputs"><input type="text" id = "plat1"></div>
 			<button type="button" onclick="addTextPlat()" >Add Another</button>
 		</div>
 		<b>Version</b><br>
@@ -95,20 +95,28 @@ function submitApp(){
 	
 	var appName =  document.getElementById("appTitle").value;
 	var desc = document.getElementById("Description").value;
-	var devs = [document.getElementById("Developers").value];	
-	var platform = [document.getElementById("Platforms").value];
+	var devs = getValues(devNum, 'dev');
+	var platforms = getValues(platNum, 'plat');
 	var version = document.getElementById("Version").value;
 	var price = document.getElementById("Price").value;
-	var links = [document.getElementById("Link").value];
+	var links = getValues(linkNum, 'link');
 	var category = $("#category-select").val();
 	
-	let application = new App(appName,desc,devs,platform,version,price,links,category); //placeholder for catagories
+	let application = new App(appName,desc,devs,platforms,version,price,links,category); //placeholder for catagories
 	proposeApp(application); //firebasefunction.js
 
 }
 
+function getValues(inputNum, field){
+	var result = [];
+	for(var i = 1; i <= inputNum; i++){
+		result.push($("#"+field+"-inputs .inputs #"+field+i).val());
+	}
+	return result;
+}
+
 function addTextDev(){
-	$("#dev-inputs .inputs").append('<input type="text" id = "link'+(++devNum)+'">');
+	$("#dev-inputs .inputs").append('<input type="text" id = "dev'+(++devNum)+'">');
 	//maximum of 4 developers allowed
 	if(devNum == 4){
 		$("#dev-inputs button").css("display","none");
@@ -117,7 +125,7 @@ function addTextDev(){
 
 
 function addTextPlat(){
-	$("#plat-inputs .inputs").append('<input type="text" id = "link'+(++platNum)+'">');
+	$("#plat-inputs .inputs").append('<input type="text" id = "plat'+(++platNum)+'">');
 	//maximum of 4 platforms allowed
 	if(platNum == 4){
 		$("#plat-inputs button").css("display","none");
@@ -132,51 +140,8 @@ function addTextLink(){
 		$("#link-inputs button").css("display","none");
 	}
 }
-</script>
-
-<!--
-
-<script type="text/javascript">
-
-function submitApp(){
-
-	var devcount = devAmount();
-	var platcount = platAmount();
-	var linkcount = linkAmount();
-	
-	var appName =  document.getElementById("appTitle").value;
-	var desc = document.getElementById("Description").value;
-	var devs = [document.getElementById("Developers").value];
-
-	for(int i =1; i < devcount; i++)
-	{
-		devs.push(document.getElementById("Developers"+i).value);
-	}
-		
-	var platform = [document.getElementById("Platforms").value];
-	for(int i =1; i < platcount; i++)
-	{
-		platform.push(document.getElementById("Platforms"+i).value);
-	}
-	
-	var version = document.getElementById("Version").value;
-	var price = document.getElementById("Price").value;
-	
-	var links = [document.getElementById("Link").value];
-	for(int i =1; i < linkcount; i++)
-	{
-		link.push(document.getElementById("Link"+i).value);
-	}
-	
-	var category = $("#category-select").val();
-	
-	let application = new App(appName,desc,devs,platform,version,price,links,category); //placeholder for catagories
-	proposeApp(application); //firebasefunction.js
-
-}
 
 </script>
--->
 
 </body>
 </html>

@@ -150,7 +150,8 @@ function checkProposalValues(app){
   //name can't be empty
   //description can't be empty
   //app price must be a number
-  console.log(isNaN(app.price));
+  //must have price
+  //must have one of developer, platform and link
   if(app.name.length === 0 || 
       app.desc.length === 0 ||
       isNaN(app.price)){
