@@ -150,9 +150,10 @@ function checkProposalValues(app){
   //name can't be empty
   //description can't be empty
   //app price must be a number
+  console.log(isNaN(app.price));
   if(app.name.length === 0 || 
       app.desc.length === 0 ||
-      !(/^\d+\.\d+$/.test(app.price))){
+      isNaN(app.price)){
     valid = false;
   }
   if(valid){
