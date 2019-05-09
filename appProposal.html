@@ -72,50 +72,125 @@
 		
 	
 		
-<button id="submit" type="button" onclick="submitApp()">Submit</button>
-
+<button id="submit" type="button" onclick="submitApp()" >Submit</button>
 	</form>
+	
+	
+	<script type="text/javascript">
+var devAmount = (function () {
+  var devCounter = 1;
+  return function () {devCounter += 1; return devCounter}
+})();
+</script>
+	<script type="text/javascript">
+var platAmount = (function () {
+  var platCounter = 1;
+  return function () {platCounter += 1; return platCounter}
+})();
+</script>
+	<script type="text/javascript">
+var linkAmount = (function () {
+  var linkCounter = 1;
+  return function () {linkCounter += 1; return linkCounter}
+})();
+</script>
+<!--
+
 <script type="text/javascript">
+
 function submitApp(){
+
+	var devcount = devAmount();
+	var platcount = platAmount();
+	var linkcount = linkAmount();
 	
 	var appName =  document.getElementById("appTitle").value;
 	var desc = document.getElementById("Description").value;
 	var devs = [document.getElementById("Developers").value];
+
+	for(int i =1; i < devcount; i++)
+	{
+		devs.push(document.getElementById("Developers"+i).value);
+	}
+		
 	var platform = [document.getElementById("Platforms").value];
+	for(int i =1; i < platcount; i++)
+	{
+		platform.push(document.getElementById("Platforms"+i).value);
+	}
+	
 	var version = document.getElementById("Version").value;
 	var price = document.getElementById("Price").value;
-	var links = document.getElementById("Link").value;
+	
+	var links = [document.getElementById("Link").value];
+	for(int i =1; i < linkcount; i++)
+	{
+		link.push(document.getElementById("Link"+i).value);
+	}
+	
 	var category = $("#category-select").val();
 	
 	let application = new App(appName,desc,devs,platform,version,price,links,category); //placeholder for catagories
 	proposeApp(application); //firebasefunction.js
 
 }
+
 </script>
+-->
+
+<script type="text/javascript">
+
+function submitApp(){
+
+	
+	var appName =  document.getElementById("appTitle").value;
+	var desc = document.getElementById("Description").value;
+	var devs = [document.getElementById("Developers").value];	
+	var platform = [document.getElementById("Platforms").value];
+	var version = document.getElementById("Version").value;
+	var price = document.getElementById("Price").value;
+	var links = [document.getElementById("Link").value];
+	var category = $("#category-select").val();
+	
+	let application = new App(appName,desc,devs,platform,version,price,links,category); //placeholder for catagories
+	proposeApp(application); //firebasefunction.js
+
+}
+
+</script>
+
+
 
 <script type="text/javascript">
 function addTextDev()
 {
+console.log("hello");
+ var devcount = devAmount();
      var newinput = document.createElement('input');
-     newinput.innerHTML = "<br><input type='text' id='Developers'><br>";
+     newinput.innerHTML = "<br><input type='text' id='Developers' + devcount><br>";
 	 document.getElementById("Developers").parentNode.insertBefore(newinput, document.getElementById("Developers").nextSibling);
+	
 }
 </script>
 <script type="text/javascript">
 function addTextPlat()
 {
+var platcount = platAmount();
      var newinput = document.createElement('input');
-     newinput.innerHTML = "<br><input type='text' id='Platforms'><br>";
+     newinput.innerHTML = "<br><input type='text' id='Platforms'+ platcount><br>";
 	 document.getElementById("Platforms").parentNode.insertBefore(newinput, document.getElementById("Platforms").nextSibling);
-}
+
+	 }
 </script>
 <script type="text/javascript">
 function addTextLink()
 {
+	var linkcount = linkAmount();
      var newinput = document.createElement('input');
-     newinput.innerHTML = "<br><input type='text' id='Link'><br>";
+     newinput.innerHTML = "<br><input type='text' id='Link'+ linkcount><br>";
 	 document.getElementById("Link").parentNode.insertBefore(newinput, document.getElementById("Link").nextSibling);
-}
+
+	 }
 </script>
 
 </body>
