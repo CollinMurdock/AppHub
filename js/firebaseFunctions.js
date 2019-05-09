@@ -147,7 +147,8 @@ function proposeApp(app){
 function checkProposalValues(app){
   let proposedRef = database.ref('ProposedApps');
   var valid = true;
-  if(app.name.length === 0 || app.desc.length == 0){
+  if(app.name.length === 0 || 
+      app.desc.length === 0 ){
     valid = false;
   }
   if(valid){
