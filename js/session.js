@@ -144,7 +144,7 @@ window.onscroll = function(){
 
 //function that links to the search results page with the search query
 function search(){
-	var searchString = $("#search-box").val();
+	var searchString = $("#search-box").val().trim();
 	window.location.href = "searchResults.html?search="+searchString;
 }
 
